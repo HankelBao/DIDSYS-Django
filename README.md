@@ -4,7 +4,7 @@
 ## Purpose
 Usually, people will waste hours to count the final scores of every classes and the final result sometimes will be changed by some naughty children since they are just written on the public blackboard.
 
-The aim of this system is just to release these unnesssary jobs. The final score and ranking will be calculated and displayed automatially. Also, people can make sure that scores on it is definitely just and no one is capable to secretly alter the scores above.
+The aim of this system is just to release these unnesssary jobs. The final score and ranking will be calculated and displayed automatially. Also, people can make sure that scores on it are definitely just and no one is capable to secretly alter the scores.
 
 ## 1.0.0
 > Start Time: Augest 9th
