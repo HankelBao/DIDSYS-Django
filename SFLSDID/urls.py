@@ -18,7 +18,6 @@ from django.contrib import admin
 from DID import views as views
 
 urlpatterns = [
-    url(r'^scoreboard/', views.scoreboard),
     url(r'^$', views.index),
     url(r'^admin/', admin.site.urls),
 ]

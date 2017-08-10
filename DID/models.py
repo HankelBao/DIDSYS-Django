@@ -5,6 +5,11 @@ from django.db import models
 
 class Clas(models.Model):
     name = models.TextField()
+    register_year = models.IntegerField()
+    day_total = models.IntegerField()
+    week_total = models.IntegerField()
+    month_total = models.IntegerField()
+    semister_total = models.IntegerField()
     is_service = models.BooleanField()
 
     def __str__(self):
