@@ -12,18 +12,19 @@ def index(request):
 
     content['scoreboard_size_x'] = len(subjects)
     content['scoreboard_size_y'] = len(clases)
-    content['scoreboard'] = [
-        [0 for i in range(len(subjects) + 1)] for j in range(len(clases) + 1)]
-    content['scoreboard'][0][0] = '#'
-    x = 0
+
+    content['scoreboard_head'] = []
+    content['scoreboard_head'].append("#")
     for subject in subjects:
-        x += 1
-        content['scoreboard'][0][x] = subject.name
-    y = 0
+        content['scoreboard_head'].append(subject.name)
+
+    content['scoreboard_body'] = []
     for clas in clases:
-        y += 1
-        content['scoreboard'][y][0] = clas.name
-    #a = content['scoreboard']
-    # a[0][0] = '#'
+        items = []
+        items.append(clas.name)
+        for subject in subjects:
+            items.append("0")
+        content['scoreboard_body'].append(items)
+
     return render(request, 'index.html', content)
 # Create your views here.
