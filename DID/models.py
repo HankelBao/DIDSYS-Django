@@ -32,7 +32,7 @@ class Scorer(models.Model):
 
 
 class Record(models.Model):
-    datetime = models.DateTimeField()
+    date = models.DateField()
     clas = models.ForeignKey(Clas)
     subject = models.ForeignKey(Subject)
     scorer = models.ForeignKey(Scorer)

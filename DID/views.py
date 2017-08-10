@@ -3,6 +3,7 @@ from .models import Subject
 from .models import Clas
 from .models import Scorer
 from .models import Record
+import datetime
 
 
 def index(request):
@@ -10,20 +11,21 @@ def index(request):
     subjects = Subject.objects.all()
     clases = Clas.objects.all()
 
-    content['scoreboard_size_x'] = len(subjects)
-    content['scoreboard_size_y'] = len(clases)
-
-    content['scoreboard_head'] = []
-    content['scoreboard_head'].append("#")
+    content['scoreboard_head'] = ["#"]
     for subject in subjects:
         content['scoreboard_head'].append(subject.name)
 
     content['scoreboard_body'] = []
     for clas in clases:
-        items = []
-        items.append(clas.name)
+        items = [clas.name]
         for subject in subjects:
-            items.append("0")
+            recordQ = Record.objects.filter(
+                date=datetime.date.today(), subject=subject, clas=clas)
+            if recordQ:
+                for record in recordQ:
+                    items.append(record.score)
+            else:
+                items.append("Not Scored Yet")
         content['scoreboard_body'].append(items)
 
     return render(request, 'index.html', content)
