@@ -28,5 +28,5 @@ def index(request):
                 items.append("Not Scored Yet")
         content['scoreboard_body'].append(items)
 
-    return render(request, 'index.html', content)
+    return render(request, 'DID/index.html', content)
 # Create your views here.
