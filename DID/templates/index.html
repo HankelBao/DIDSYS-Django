@@ -53,9 +53,9 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                {% for item in scoreboard.0 %}
+                  <th>{{scoreboard.1.scoreboard_size_y}}</th>
+                {% endfor %}
               </tr>
             </thead>
             <tbody>
