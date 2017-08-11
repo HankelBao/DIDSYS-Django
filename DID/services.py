@@ -33,7 +33,7 @@ class scoreboard:
 
 class scoreranking:
     def get_day_ranking_header():
-        items = ["#", "Class Name", "Totoal Score of day"]
+        items = ["#", "Class Name", "Total Score of Today"]
         return items
 
     def get_3_day_ranking_body():
