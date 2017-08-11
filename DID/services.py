@@ -3,6 +3,7 @@ from .models import Clas
 from .models import Scorer
 from .models import Record
 import datetime
+from enum import Enum
 
 
 class scoreboard:
@@ -14,12 +15,10 @@ class scoreboard:
         return scoreboard_head
 
     def get_table_body(date_required):
-        subjects = Subject.objects.all()
-        clases = Clas.objects.all()
         scoreboard_body = []
-        for clas in clases:
+        for clas in Clas.objects.all():
             items = [clas.name]
-            for subject in subjects:
+            for subject in Subject.objects.all():
                 recordQ = Record.objects.filter(
                     date=date_required, subject=subject, clas=clas)
                 if recordQ:
@@ -63,6 +62,20 @@ class scoremoments:
 
 
 class scorezone:
+    class check_account_return(Enum):
+        wrong_password = 0
+        wrong_username = 1
+
+    def check_account(username, password):
+        scorers = Scorer.objects.all()
+        for scorer in scorers:
+            if scorer.name == username:
+                if scorer.password == password:
+                    return scorer
+                else:
+                    return scorezone.check_account_return.wrong_password
+        return scorezone.check_account_return.wrong_username
+
     def update_class_day_total():
         clases = Clas.objects.all()
         for clas in clases:
@@ -74,3 +87,29 @@ class scorezone:
                     day_total += record.score
             clas.day_total = day_total
             clas.save()
+
+    def load_scoreboard_head(scorer):
+        items = [""]
+        for subject in scorer.subjects.all():
+            items.append(subject.name)
+        return items
+
+    def load_scoreboard_body(scorer):
+        scoreboard_body = []
+        index = 0
+        for clas in scorer.clases.all():
+            items = [clas.name]
+            for subject in scorer.subjects.all():
+                keys = {}
+                index += 1
+                recordQ = Record.objects.filter(
+                    date=datetime.date.today(), subject=subject, clas=clas)
+                if recordQ:
+                    for record in recordQ:
+                        keys['score'] = record.score
+                else:
+                    keys['score'] = 'NULL'
+                keys['index'] = index
+                items.append(keys)
+            scoreboard_body.append(items)
+        return scoreboard_body

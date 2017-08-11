@@ -20,5 +20,6 @@ from DID import views as views
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^scorerboard.html', views.scorerboard),
+    url(r'^scorerboard_submit.html', views.scorerboard_submit),
     url(r'^admin/', admin.site.urls),
 ]
