@@ -21,3 +21,9 @@ def index(request):
 
     content['scoremoments'] = services.scoremoments.get_4_scoremoments()
     return render(request, 'DID/index.html', content)
+
+
+def scorerboard(request):
+    content = {}
+    content['n'] = 'Hello World!'
+    return render(request, 'DID/scorerboard.html', content)
