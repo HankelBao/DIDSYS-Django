@@ -84,27 +84,19 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                {% for value in scoreranking_head %}
+                  <th>{{value}}</th>
+                {% endfor %}
               </tr>
             </thead>
             <tbody>
+              {% for values in scoreranking_body %}
               <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
+                {% for value in values %}
+                <td>{{value}}</td>
+                {% endfor %}
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -121,10 +113,9 @@
       <div class="row">
         <div class="col-md-12">
           <ul class="list-group">
-            <li class="list-group-item"><i class="fa fa-home fa-fw"></i>Cras justo odio </li>
-            <li class="list-group-item">Dapibus ac facilisis</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur</li>
+            {% for value in scoremoments %}
+            <li class="list-group-item">{{value}}</li>
+            {% endfor %}
           </ul>
         </div>
       </div>
@@ -144,8 +135,25 @@
               <input type="text" class="form-control" placeholder="Enter username"> </div>
             <div class="form-group"> <label>Password</label>
               <input type="password" class="form-control" placeholder="Enter password"> </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Login</button>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
