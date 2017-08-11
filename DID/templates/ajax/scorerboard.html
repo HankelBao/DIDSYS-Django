@@ -1,9 +1,17 @@
 {% extends 'modals-base.html' %}
+
 {% block modal-header %}
-  <h4 class="modal-title">Welcome, Inspector</h4>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+{% if not entered %}
+  Warning
+{% else %}
+  Welcome, Inspector
+{% endif %}
 {% endblock %}
+
 {% block modal-content %}
+{% if not entered %}
+  {{message}}
+{% else %}
   <div class="py-5">
     <div class="container">
         <div class="row">
@@ -46,10 +54,16 @@
           </div>
         </div>
       </div>
-    </div>  
+    </div>
+{% endif %}
 {% endblock %}
+
 {% block modal-footer %}
+{% if not entered %}
+  <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+{% else %}
   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-  <button onclick="score_submit()" type="button" class="btn btn-primary">OK</button>
+  <button onclick="score_submit()" type="button" class="btn btn-primary">Save Changes</button>
+{% endif %}
 {% endblock %}
 

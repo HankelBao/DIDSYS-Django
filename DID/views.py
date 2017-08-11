@@ -25,16 +25,21 @@ def index(request):
 
 
 def scorerboard(request):
+    content = {}
     username = request.GET['username']
     password = request.GET['password']
     return_status = services.scorezone.check_account(username, password)
     if return_status == services.scorezone.check_account_return.wrong_username:
-        return HttpResponse("Sorry. The account you entered doesn't exist.")
+        content['entered'] = False
+        content['message'] = "Sorry. The account you entered doesn't exist."
+        return render(request, 'ajax/scorerboard.html', content)
     if return_status == services.scorezone.check_account_return.wrong_password:
-        return HttpResponse("Sorry. The password you entered is incorrect.")
+        content['entered'] = False
+        content['message'] = "Sorry. The password you entered is incorrect."
+        return render(request, 'ajax/scorerboard.html', content)
 
+    content['entered'] = True
     scorer = return_status
-    content = {}
     content["scoreboard_head"] = services.scorezone.load_scoreboard_head(
         scorer)
     content["scoreboard_body"] = services.scorezone.load_scoreboard_body(
