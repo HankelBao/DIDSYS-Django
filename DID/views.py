@@ -41,10 +41,9 @@ def scorerboard(request):
         scorer)
     content["scoreboard_size"] = len(
         scorer.subjects.all()) * len(scorer.clases.all())
-    return render(request, 'DID/scorerboard.html', content)
+    return render(request, 'ajax/scorerboard.html', content)
 
 
 def scorerboard_submit(request):
-    content = {}
     scores = request.GET.getlist('scores')
     return HttpResponse(scores)
