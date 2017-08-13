@@ -2,6 +2,7 @@ function login(){
     scorer_username = $("#login_username").val();
     scorer_password = $("#login_password").val();
     $.ajax({
+        type:"GET",
         url:"scorerboard.html",
         data:{"username":scorer_username, "password":scorer_password},
         success:function(result){
@@ -17,13 +18,25 @@ function score_submit(){
         items[i] = $("#"+i).val();
     }
     $.ajax({
+        type:"GET",
         traditional:true,
         url:"scorerboard_submit.html",
         data:{
             "scores":items,
+            "username":scorer_username,
+            "password":scorer_password
         },
         success:function(result){
             $("#modal-content").html(result);
         }
-    });    
+    });
+}
+
+function more_on_scoreboard() {
+    $.ajax({
+        url:"more_on_scoreboard.html",
+        success:function(result){
+            $("#modal-content").html(result);
+        }
+    });  
 }

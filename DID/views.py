@@ -40,6 +40,7 @@ def scorerboard(request):
 
     content['entered'] = True
     scorer = return_status
+    content['scorer_name'] = scorer.name
     content["scoreboard_head"] = services.scorezone.load_scoreboard_head(
         scorer)
     content["scoreboard_body"] = services.scorezone.load_scoreboard_body(
@@ -51,4 +52,15 @@ def scorerboard(request):
 
 def scorerboard_submit(request):
     scores = request.GET.getlist('scores')
-    return HttpResponse(scores)
+    username = request.GET['username']
+    password = request.GET['password']
+    scorer = services.scorezone.check_account(username, password)
+    if scorer:
+        services.scorezone.update_scores(scorer, scores)
+        return render(request, 'ajax/scorerboard_submit.html')
+    else:
+        return HttpResponse("Hackers are not allowed here!")
+
+
+def more_on_scoreboard(request):
+    return render(request, 'ajax/more_on_scoreboard.html')

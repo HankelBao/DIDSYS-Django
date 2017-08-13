@@ -113,3 +113,23 @@ class scorezone:
                 items.append(keys)
             scoreboard_body.append(items)
         return scoreboard_body
+
+    def update_scores(scorer, scores):
+        i = 0
+        for clas in scorer.clases.all():
+            for subject in scorer.subjects.all():
+                i += 1
+                recordQ = Record.objects.filter(
+                    date=datetime.date.today(), subject=subject, clas=clas)
+                if recordQ:
+                    for record in recordQ:
+                        if scores[i]:
+                            record.score = scores[i]
+                            record.save()
+                        else:
+                            record.delete()
+                else:
+                    if scores[i]:
+                        Record.objects.create(date=datetime.date.today(), datetime=datetime.datetime.now(),
+                                              clas=clas, subject=subject, scorer=scorer, score=scores[i])
+        scorezone.update_class_day_total()

@@ -18,8 +18,14 @@ from django.contrib import admin
 from DID import views as views
 
 urlpatterns = [
+    # Index
     url(r'^$', views.index),
+
+    # Ajax
     url(r'^scorerboard.html', views.scorerboard),
     url(r'^scorerboard_submit.html', views.scorerboard_submit),
+    url(r'^more_on_scoreboard.html', views.more_on_scoreboard),
+
+    # Admin
     url(r'^admin/', admin.site.urls),
 ]
