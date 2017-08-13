@@ -2,7 +2,7 @@ function login(){
     scorer_username = $("#login_username").val();
     scorer_password = $("#login_password").val();
     $.ajax({
-        type:"GET",
+        type:"POST",
         url:"scorerboard.html",
         data:{"username":scorer_username, "password":scorer_password},
         success:function(result){
@@ -18,7 +18,7 @@ function score_submit(){
         items[i] = $("#"+i).val();
     }
     $.ajax({
-        type:"GET",
+        type:"POST",
         traditional:true,
         url:"scorerboard_submit.html",
         data:{

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 import datetime
 from .models import Subject
@@ -8,6 +9,7 @@ from .models import Record
 from . import services
 
 
+@csrf_exempt
 def index(request):
     content = {}
     subjects = Subject.objects.all()
@@ -24,10 +26,11 @@ def index(request):
     return render(request, 'DID/index.html', content)
 
 
+@csrf_exempt
 def scorerboard(request):
     content = {}
-    username = request.GET['username']
-    password = request.GET['password']
+    username = request.POST['username']
+    password = request.POST['password']
     return_status = services.scorezone.check_account(username, password)
     if return_status == services.scorezone.check_account_return.wrong_username:
         content['entered'] = False
@@ -50,10 +53,11 @@ def scorerboard(request):
     return render(request, 'ajax/scorerboard.html', content)
 
 
+@csrf_exempt
 def scorerboard_submit(request):
-    scores = request.GET.getlist('scores')
-    username = request.GET['username']
-    password = request.GET['password']
+    scores = request.POST.getlist('scores')
+    username = request.POST['username']
+    password = request.POST['password']
     scorer = services.scorezone.check_account(username, password)
     if scorer:
         services.scorezone.update_scores(scorer, scores)
