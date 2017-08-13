@@ -22,10 +22,13 @@ urlpatterns = [
     url(r'^$', views.index),
 
     # Ajax
-    url(r'^scorerboard.html', views.scorerboard),
-    url(r'^scorerboard_submit.html', views.scorerboard_submit),
-    url(r'^more_on_scoreboard.html', views.more_on_scoreboard),
+    url(r'^ajax/get-scorerboard', views.scorerboard),
+    url(r'^ajax/score-submit', views.scorerboard_submit),
+    url(r'^ajax/more_on_scoreboard', views.more_on_scoreboard),
 
     # Admin
     url(r'^admin/', admin.site.urls),
+
+    # Angular Test
+    url(r'^angular', views.angular)
 ]

@@ -3,7 +3,7 @@ function login(){
     scorer_password = $("#login_password").val();
     $.ajax({
         type:"POST",
-        url:"scorerboard.html",
+        url:"ajax/get-scorerboard",
         data:{"username":scorer_username, "password":scorer_password},
         success:function(result){
             $("#modal-content").html(result);
@@ -20,7 +20,7 @@ function score_submit(){
     $.ajax({
         type:"POST",
         traditional:true,
-        url:"scorerboard_submit.html",
+        url:"ajax/score-submit.html",
         data:{
             "scores":items,
             "username":scorer_username,
