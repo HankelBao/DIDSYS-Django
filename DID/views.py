@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 import json
@@ -28,7 +29,7 @@ def index(request):
 
 
 def one(request):
-    return render(request, 'DID/1.html')
+    return render_to_response('DID/1.html')
 
 
 @csrf_exempt
