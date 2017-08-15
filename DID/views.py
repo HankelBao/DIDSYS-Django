@@ -66,3 +66,12 @@ def scorerboard_submit(request):
         return render(request, 'ajax/scorerboard_submit.html')
     else:
         return HttpResponse("Hackers are not allowed here!")
+
+
+@csrf_exempt
+def get_scoreboard(request):
+    content = {}
+    content['scoreboard_head'] = services.scoreboard.get_table_header()
+    content['scoreboard_body'] = services.scoreboard.get_table_body(
+        datetime.date.today())
+    return HttpResponse(json.dumps(content), content_type="application/json")
