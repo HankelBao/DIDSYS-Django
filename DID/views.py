@@ -27,6 +27,10 @@ def index(request):
     return render(request, 'DID/index.html', content)
 
 
+def one(request):
+    return render(request, 'DID/1.html')
+
+
 @csrf_exempt
 def scorerboard(request):
     content = {}

@@ -20,6 +20,7 @@ from DID import views as views
 urlpatterns = [
     # Index
     url(r'^$', views.index),
+    url(r'^one', views.one),
 
     # Ajax
     url(r'^ajax/get-scorerboard', views.scorerboard),
