@@ -52,13 +52,13 @@
         <div class="col-md-12">
           <table class="table table-bordered">
             <thead>
-              <tr>
+              <tr id="scoreboard_header">
                 {% for value in scoreboard_head %}
                   <th>{{value}}</th>
                 {% endfor %}
               </tr>
             </thead>
-            <tbody>
+            <tbody id="scoreboard_body">
               {% for values in scoreboard_body %}
               <tr>
                 {% for value in values %}

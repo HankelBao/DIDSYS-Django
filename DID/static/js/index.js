@@ -32,11 +32,3 @@ function score_submit(){
     });
 }
 
-function more_on_scoreboard() {
-    $.ajax({
-        url:"more_on_scoreboard.html",
-        success:function(result){
-            $("#modal-content").html(result);
-        }
-    });  
-}

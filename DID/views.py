@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
+
 import json
 import datetime
 from .models import Subject
@@ -65,16 +66,3 @@ def scorerboard_submit(request):
         return render(request, 'ajax/scorerboard_submit.html')
     else:
         return HttpResponse("Hackers are not allowed here!")
-
-
-@csrf_exempt
-def more_on_scoreboard(request):
-    content = {}
-    content['head'] = services.scoreboard.get_table_header()
-    content["body"] = services.scoreboard.get_table_body(
-        datetime.date.today())
-    return HttpResponse(json.dumps(content), content_type="application/json")
-
-
-def angular(request):
-    return render(request, 'DID/angular.html')

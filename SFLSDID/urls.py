@@ -28,7 +28,4 @@ urlpatterns = [
 
     # Admin
     url(r'^admin/', admin.site.urls),
-
-    # Angular Test
-    url(r'^angular', views.angular)
 ]
