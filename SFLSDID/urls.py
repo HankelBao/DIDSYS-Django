@@ -22,9 +22,14 @@ urlpatterns = [
     url(r'^$', views.index),
 
     # Ajax
+    url(r'^ajax/get-index', views.get_index),
+    url(r'^ajax/get-scoreboard', views.get_scoreboard),
+    url(r'^ajax/get-scoreranking', views.get_scoreranking),
+    url(r'^ajax/get-scoremoments', views.get_scoremoments),
+
+    # Ajax View
     url(r'^ajax/get-scorerboard', views.scorerboard),
     url(r'^ajax/score-submit', views.scorerboard_submit),
-    url(r'^ajax/get-scoreboard', views.get_scoreboard),
 
     # Admin
     url(r'^admin/', admin.site.urls),

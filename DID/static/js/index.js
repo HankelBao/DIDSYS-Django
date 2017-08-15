@@ -28,6 +28,7 @@ function score_submit() {
         },
         success:function(result){
             $("#modal_content").html(result);
+            update_index();
         }
     });
 }
@@ -50,3 +51,64 @@ function update_scoreboard()  {
         })
     })
 }
+
+function update_scoreranking()  {
+    $.getJSON("ajax/get-scoreranking", function(result) {
+        $("#scoreranking_header").empty();
+        $.each(result.scoreranking_head, function(i, value) {
+            line = "<th>" + value + "</th>";
+            $("#scoreranking_header").append(line);
+        })
+        $("#scoreranking_body").empty();
+        $.each(result.scoreranking_body, function(i, value) {
+            $("#scoreranking_body").append("<tr>");
+            $.each(value, function(i, item) {
+                line = "<td>" + item + "</td>";
+                $("#scoreranking_body").append(line);
+            })
+            $("#scoreranking_body").append("</tr>");
+        })
+    })
+}
+
+function update_scoremoements() {
+    $.getJSON("ajax/get-scoremoments", function(result) {
+        $("#scoremoments_content").empty();
+        $.each(result.scoremoemnts, function(i, value) {
+            line = "<li class='list-group-item'>" + value + "</li>";
+            $("#scoremoments_content").append(line);
+        })
+    })
+}
+
+function update_index() {
+    $.getJSON("ajax/get-index", function(result) {
+        $("#scoreboard-body").empty();
+        $.each(result.scoreboard_body, function(i, value) {
+            $("#scoreboard-body").append("<tr>");
+            $.each(value, function(i, item) {
+                line = "<td>" + item + "</td>";
+                $("#scoreboard-body").append(line);
+            })
+            $("#scoreboard-body").append("</tr>");
+        })
+        $("#scoreranking-body").empty();
+        $.each(result.scoreranking_body, function(i, value) {
+            $("#scoreranking-body").append("<tr>");
+            $.each(value, function(i, item) {
+                line = "<td>" + item + "</td>";
+                $("#scoreranking-body").append(line);
+            })
+            $("#scoreranking-body").append("</tr>");
+        })
+        $("#scoremoments-content").empty();
+        $.each(result.scoremoments, function(i, value) {
+            line = "<li class='list-group-item'>" + value + "</li>";
+            $("#scoremoments-content").append(line);
+        })
+    })
+}
+
+$(document).ready(function(){
+    update_index();
+});

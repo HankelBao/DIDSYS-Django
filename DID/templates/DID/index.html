@@ -52,20 +52,13 @@
         <div class="col-md-12">
           <table class="table table-bordered">
             <thead>
-              <tr id="scoreboard_header">
+              <tr>
                 {% for value in scoreboard_head %}
                   <th>{{value}}</th>
                 {% endfor %}
               </tr>
             </thead>
-            <tbody id="scoreboard_body">
-              {% for values in scoreboard_body %}
-              <tr>
-                {% for value in values %}
-                <td>{{value}}</td>
-                {% endfor %}
-              </tr>
-              {% endfor %}
+            <tbody id="scoreboard-body">
             </tbody>
           </table>
         </div>
@@ -89,14 +82,7 @@
                 {% endfor %}
               </tr>
             </thead>
-            <tbody>
-              {% for values in scoreranking_body %}
-              <tr>
-                {% for value in values %}
-                <td>{{value}}</td>
-                {% endfor %}
-              </tr>
-              {% endfor %}
+            <tbody id="scoreranking-body">
             </tbody>
           </table>
         </div>
@@ -112,10 +98,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <ul class="list-group">
-            {% for value in scoremoments %}
-            <li class="list-group-item">{{value}}</li>
-            {% endfor %}
+          <ul id="scoremoments-content" class="list-group">
           </ul>
         </div>
       </div>
