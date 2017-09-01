@@ -30,6 +30,7 @@ urlpatterns = [
     # Ajax View
     url(r'^ajax/get-scorerboard', views.scorerboard),
     url(r'^ajax/score-submit', views.scorerboard_submit),
+    url(r'^ajax/more-on-scoreboard', views.more_on_scoreboard),
 
     # Admin
     url(r'^admin/', admin.site.urls),

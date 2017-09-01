@@ -97,3 +97,13 @@ def get_scoremoments(request):
     content = {}
     content['scoremoments'] = services.scoremoments.get_4_scoremoments()
     return HttpResponse(json.dumps(content), content_type="application/json")
+
+
+@csrf_exempt
+def more_on_scoreboard(request):
+    content = {}
+    content['scoreboard_head'] = services.scoreboard.get_table_header()
+    content['scoreboard_body'] = services.scoreboard.get_table_body(
+        datetime.date.today())
+    content['contents'] = "H"
+    return render(request, 'ajax/more_on_scoreboard.html', content)

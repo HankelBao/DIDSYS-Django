@@ -112,3 +112,13 @@ function update_index() {
 $(document).ready(function(){
     update_index();
 });
+
+function more_on_scoreboard() {
+    $.ajax({
+        type:"POST",
+        url:"ajax/more-on-scoreboard",
+        success:function(result){
+            $("#modal_content").html(result);
+        }
+    });
+}
