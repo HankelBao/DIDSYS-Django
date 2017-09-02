@@ -113,10 +113,11 @@ $(document).ready(function(){
     update_index();
 });
 
-function more_on_scoreboard() {
+function more_on_scoreboard(input_date) {
     $.ajax({
-        type:"POST",
+        type:"GET",
         url:"ajax/more-on-scoreboard",
+        data:{"date":input_date},
         success:function(result){
             $("#modal_content").html(result);
         }

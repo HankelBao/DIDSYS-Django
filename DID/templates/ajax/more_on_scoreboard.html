@@ -1,14 +1,38 @@
 {% extends 'modals-base.html' %}
 
 {% block modal-header %}
-    ScoreBoard of 
+  ScoreBoard of {{date}}
 {% endblock %}
 
 {% block modal-content %}
-    TODO: add the scoreboard
+    <div class="py-5">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                {% for value in scoreboard_head %}
+                <th>{{value}}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody id="scoreboard-body">
+                {% for values in scoreboard_body %}
+                <tr>
+                    {% for value in values %}
+                        <td>{{value}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 {% endblock %}
 
 {% block modal-footer %}
-  <button type="button" class="btn btn-default">Update</button>
-  <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+  <input value="{{date}}" id="more-on-scoreboard-date" type="text" class="form-control" placeholder="The Chosen Date, in YYYY-MM-DD, e.g. March 1st, 2018 is 2018-03-01" />
+  <button onclick="more_on_scoreboard($('#more-on-scoreboard-date').val())" type="button" class="btn btn-default">Update</button>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
 {% endblock %}

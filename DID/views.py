@@ -102,8 +102,7 @@ def get_scoremoments(request):
 @csrf_exempt
 def more_on_scoreboard(request):
     content = {}
+    content['date'] = request.GET['date'];
     content['scoreboard_head'] = services.scoreboard.get_table_header()
-    content['scoreboard_body'] = services.scoreboard.get_table_body(
-        datetime.date.today())
-    content['contents'] = "H"
+    content['scoreboard_body'] = services.scoreboard.get_table_body(content['date'])
     return render(request, 'ajax/more_on_scoreboard.html', content)
