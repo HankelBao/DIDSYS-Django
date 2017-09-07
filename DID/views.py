@@ -30,10 +30,6 @@ def get_index(request):
     return HttpResponse(json.dumps(content), content_type="application/json")
 
 
-def one(request):
-    return render_to_response('DID/1.html')
-
-
 @csrf_exempt
 def scorerboard(request):
     content = {}
@@ -102,7 +98,8 @@ def get_scoremoments(request):
 @csrf_exempt
 def more_on_scoreboard(request):
     content = {}
-    content['date'] = request.GET['date'];
+    content['date'] = request.GET['date']
     content['scoreboard_head'] = services.scoreboard.get_table_header()
-    content['scoreboard_body'] = services.scoreboard.get_table_body(content['date'])
+    content['scoreboard_body'] = services.scoreboard.get_table_body(
+        content['date'])
     return render(request, 'ajax/more_on_scoreboard.html', content)
