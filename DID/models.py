@@ -20,6 +20,7 @@ class Subject(models.Model):
     name = models.TextField()
     full_score = models.IntegerField()
     is_service = models.BooleanField()
+    weeky = models.BooleanField()
 
     def __str__(self):
         return self.name

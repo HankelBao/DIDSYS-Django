@@ -1,0 +1,42 @@
+{% extends 'modals-base.html' %}
+
+{% block modal-header %}
+    ScoreRanking on {{count_unit}}
+{% endblock %}
+
+{% block modal-content %}
+    <div class="py-5">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                {% for value in scoreranking_head %}
+                <th>{{value}}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody id="scoreranking-body">
+              {% for values in scoreranking_body%}
+              <tr>
+                  {% for value in values %}
+                      <td>{{value}}</td>
+                  {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block modal-footer %}
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button onclick="more_on_scoreranking(0)" class="btn btn-secondary">Daily View</button>
+    <button onclick="more_on_scoreranking(1)" class="btn btn-secondary">Weekly View</button>
+    <button onclick="more_on_scoreranking(2)" class="btn btn-secondary">Monthly View</button>
+    <button onclick="more_on_scoreranking(3)" class="btn btn-secondary">Semester View</button>
+  </div>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+{% endblock %}

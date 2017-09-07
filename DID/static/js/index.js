@@ -123,3 +123,14 @@ function more_on_scoreboard(input_date) {
         }
     });
 }
+
+function more_on_scoreranking(count_unit) {
+    $.ajax({
+        type:"GET",
+        url:"ajax/more-on-scoreranking",
+        data:{"count_unit":count_unit},
+        success:function(result){
+            $("#modal_content").html(result);
+        }
+    });   
+}

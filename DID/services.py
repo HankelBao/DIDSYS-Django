@@ -35,6 +35,18 @@ class scoreranking:
         items = ["#", "Class Name", "Total Score of Today"]
         return items
 
+    def get_week_ranking_header():
+        items = ["#", "Class Name", "Total Score of This Week"]
+        return items
+
+    def get_month_ranking_header():
+        items = ["#", "Class Name", "Total Score of This Month"]
+        return items
+
+    def get_semester_ranking_header():
+        items = ["#", "Class Name", "Total Score of This Semester"]
+        return items
+
     def get_3_day_ranking_body():
         clases = Clas.objects.all().order_by('-day_total')[:3]
         i = 0
@@ -42,6 +54,32 @@ class scoreranking:
         for clas in clases:
             i += 1
             items = [str(i), clas.name, clas.day_total]
+            ranking_body.append(items)
+        return ranking_body
+
+    def get_3_ranking_body(type):
+        if type == 0:
+            clases = Clas.objects.all().order_by('-semister_total')[:3]
+        elif type == 1:
+            clases = Clas.objects.all().order_by('-week_total')[:3]
+        elif type == 2:
+            clases = Clas.objects.all().order_by('-month_total')[:3]
+        else:
+            clases = Clas.objects.all().order_by('-semister_total')[:3]
+
+        ranking_body = []
+        i = 0
+        for clas in clases:
+            i += 1
+            if type == 0:
+                items = [str(i), clas.name, clas.day_total]
+            elif type == 1:
+                items = [str(i), clas.name, clas.week_total]
+            elif type == 2:
+                items = [str(i), clas.name, clas.month_total]
+            else:
+                items = [str(i), clas.name, clas.semister_total]
+
             ranking_body.append(items)
         return ranking_body
 
@@ -86,6 +124,43 @@ class scorezone:
                 for record in recordQ:
                     day_total += record.score
             clas.day_total = day_total
+            clas.save()
+
+    def update_class_week_total():
+        clases = Clas.objects.all()
+        now = datetime.datetime.now()
+        for clas in clases:
+            week_total = 0
+            recordQ = Record.objects.filter(
+                date__range=(now - datetime.timedelta(days=now.weekday()), now + datetime.timedelta(days=6 - now.weekday())), clas=clas)
+            if recordQ:
+                for record in recordQ:
+                    week_total += record.score
+            clas.week_total = week_total
+            clas.save()
+
+    def update_class_month_total():
+        clases = Clas.objects.all()
+        now = datetime.datetime.now()
+        for clas in clases:
+            month_total = 0
+            recordQ = Record.objects.filter(
+                date__range=(datetime.datetime(now.year, now.month, 1), datetime.datetime(now.year, now.month + 1, 1) - datetime.timedelta(days=1)), clas=clas)
+            if recordQ:
+                for record in recordQ:
+                    month_total += record.score
+            clas.month_total = month_total
+            clas.save()
+
+    def update_class_semester_total():
+        clases = Clas.objects.all()
+        for clas in clases:
+            semester_total = 0
+            recordQ = Record.objects.filter(clas=clas)
+            if recordQ:
+                for record in recordQ:
+                    semester_total += record.score
+            clas.semister_total = semester_total
             clas.save()
 
     def load_scoreboard_head(scorer):
@@ -133,3 +208,6 @@ class scorezone:
                         Record.objects.create(date=datetime.date.today(), datetime=datetime.datetime.now(),
                                               clas=clas, subject=subject, scorer=scorer, score=scores[i])
         scorezone.update_class_day_total()
+        scorezone.update_class_month_total()
+        scorezone.update_class_week_total()
+        scorezone.update_class_semester_total()
