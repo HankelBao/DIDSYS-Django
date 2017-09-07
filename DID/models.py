@@ -6,11 +6,11 @@ from django.db import models
 class Clas(models.Model):
     name = models.TextField()
     register_year = models.IntegerField()
-    day_total = models.IntegerField()
-    week_total = models.IntegerField()
-    month_total = models.IntegerField()
-    semister_total = models.IntegerField()
-    is_service = models.BooleanField()
+    day_total = models.IntegerField(default=0)
+    week_total = models.IntegerField(default=0)
+    month_total = models.IntegerField(default=0)
+    semister_total = models.IntegerField(default=0)
+    is_service = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -18,9 +18,9 @@ class Clas(models.Model):
 
 class Subject(models.Model):
     name = models.TextField()
-    full_score = models.IntegerField()
-    is_service = models.BooleanField()
-    weeky = models.BooleanField()
+    full_score = models.IntegerField(default=10)
+    is_service = models.BooleanField(default=True)
+    weeky = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -31,7 +31,7 @@ class Scorer(models.Model):
     password = models.TextField()
     subjects = models.ManyToManyField(Subject)
     clases = models.ManyToManyField(Clas)
-    is_service = models.BooleanField()
+    is_service = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
