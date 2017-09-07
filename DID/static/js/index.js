@@ -19,6 +19,7 @@ function score_submit() {
         items[i] = $("#"+i).val();
         items_reason[i] = $("#"+i+"R").val(); 
     }
+    $("#modal_content").html("We are busy loading data and checking your account.<br>Please wait patiently...");
     $.ajax({
         type:"POST",
         traditional:true,
