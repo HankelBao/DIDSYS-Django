@@ -103,3 +103,22 @@ def more_on_scoreboard(request):
     content['scoreboard_body'] = services.scoreboard.get_table_body(
         content['date'])
     return render(request, 'ajax/more_on_scoreboard.html', content)
+
+
+@csrf_exempt
+def more_on_scoreranking(request):
+    unit_type = int(request.GET['count_unit'])
+
+    content = {}
+    if unit_type == 0:
+        content['count_unit'] = "Daily"
+    elif unit_type == 1:
+        content['count_unit'] = "Weekly"
+    elif unit_type == 2:
+        content['count_unit'] = "Monthly"
+    else:
+        content['count_unit'] = "Semester"
+    content['scoreranking_head'] = services.scoreranking.get_day_ranking_header()
+    content['scoreranking_body'] = services.scoreranking.get_3_ranking_body(
+        unit_type)
+    return render(request, 'ajax/more_on_scoreranking.html', content)
