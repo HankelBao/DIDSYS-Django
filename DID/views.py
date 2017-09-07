@@ -60,11 +60,12 @@ def scorerboard(request):
 @csrf_exempt
 def scorerboard_submit(request):
     scores = request.POST.getlist('scores')
+    scores_reason = request.POST.getlist('scores_reason')
     username = request.POST['username']
     password = request.POST['password']
     scorer = services.scorezone.check_account(username, password)
     if scorer:
-        services.scorezone.update_scores(scorer, scores)
+        services.scorezone.update_scores(scorer, scores, scores_reason)
         services.scorezone.update_class_day_total()
         return render(request, 'ajax/scorerboard_submit.html')
     else:

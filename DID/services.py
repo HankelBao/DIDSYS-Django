@@ -23,7 +23,10 @@ class scoreboard:
                     date=date_required, subject=subject, clas=clas)
                 if recordQ:
                     for record in recordQ:
-                        items.append(record.score)
+                        words = str(record.score)
+                        if record.reason:
+                            words += " (" + record.reason + ")"
+                        items.append(words)
                 else:
                     items.append("Not Scored Yet")
             scoreboard_body.append(items)
@@ -182,14 +185,19 @@ class scorezone:
                 if recordQ:
                     for record in recordQ:
                         keys['score'] = record.score
+                        if record.reason:
+                            keys['reason'] = record.reason
+                        else:
+                            keys['reason'] = 'NULL'
                 else:
                     keys['score'] = 'NULL'
+                    keys['reason'] = 'NULL'
                 keys['index'] = index
                 items.append(keys)
             scoreboard_body.append(items)
         return scoreboard_body
 
-    def update_scores(scorer, scores):
+    def update_scores(scorer, scores, scores_reason):
         i = 0
         for clas in scorer.clases.all():
             for subject in scorer.subjects.all():
@@ -200,6 +208,8 @@ class scorezone:
                     for record in recordQ:
                         if scores[i]:
                             record.score = scores[i]
+                            if scores_reason[i]:
+                                record.reason = scores_reason[i]
                             record.save()
                         else:
                             record.delete()

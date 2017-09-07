@@ -43,7 +43,11 @@
                           {% else %}
                               <input type="text" id="{{value.index}}" value="{{value.score}}" class="form-control">
                           {% endif %}
-                          <input type="text" class="form-control" placeholder="reason">
+                          {% if value.reason == "NULL" %}
+                              <input type="text" id="{{value.index}}R" class="form-control" placeholder="enter reason">
+                          {% else %}
+                              <input type="text" id="{{value.index}}R" value="{{value.reason}}" class="form-control">
+                          {% endif %}
                       {% endif %}
                   </td>
                   {% endfor %}

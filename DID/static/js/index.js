@@ -14,8 +14,10 @@ function login() {
 function score_submit() {
     items_counter = $("#items_counter").val();
     var items = new Array();
+    var items_reason = new Array();
     for (var i = 1; i <= items_counter; i++) {
         items[i] = $("#"+i).val();
+        items_reason[i] = $("#"+i+"R").val(); 
     }
     $.ajax({
         type:"POST",
@@ -23,6 +25,7 @@ function score_submit() {
         url:"ajax/score-submit.html",
         data:{
             "scores":items,
+            "scores_reason":items_reason,
             "username":scorer_username,
             "password":scorer_password
         },
