@@ -44,6 +44,7 @@ class Record(models.Model):
     subject = models.ForeignKey(Subject)
     scorer = models.ForeignKey(Scorer)
     score = models.IntegerField()
+    reason = models.TextField()
 
     def __str__(self):
         return str(self.score)
