@@ -78,7 +78,7 @@ def get_scoreboard(request):
     content['scoreboard_head'] = services.scoreboard.get_table_header()
     content['scoreboard_body'] = services.scoreboard.get_table_body(
         datetime.date.today())
-    return HttpResponse(json.dumps(content), content_type="application/json")
+    return HttpResponse(json.dumps(services.scoreboard.get_table(datetime.date.today())), content_type="application/json")
 
 
 @csrf_exempt

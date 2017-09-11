@@ -7,6 +7,25 @@ from enum import Enum
 
 
 class scoreboard:
+    def get_table(date_required):
+        scoreboard_table = []
+        for clas in Clas.objects.all():
+            items = {}
+            items['Class'] = clas.name
+            for subject in Subject.objects.all():
+                recordQ = Record.objects.filter(
+                    date=date_required, subject=subject, clas=clas)
+                if recordQ:
+                    for record in recordQ:
+                        words = str(record.score)
+                        if record.reason:
+                            words += " (" + record.reason + ")"
+                        items[subject.name] = words
+                else:
+                    items[subject.name] = "Not Scored Yet"
+            scoreboard_table.append(items)
+        return scoreboard_table
+
     def get_table_header():
         subjects = Subject.objects.all()
         scoreboard_head = [""]
