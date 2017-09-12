@@ -53,6 +53,7 @@ class scoreboard:
 
 
 class scoreranking:
+
     def get_day_ranking_header():
         items = ["#", "Class Name", "Total Score of Today"]
         return items
@@ -78,6 +79,19 @@ class scoreranking:
             items = [str(i), clas.name, clas.day_total]
             ranking_body.append(items)
         return ranking_body
+
+    def get_3_day_ranking_table():
+        clases = Clas.objects.all().order_by('-day_total')[:3]
+        i = 0
+        ranking_table = []
+        for clas in clases:
+            i += 1
+            items = {}
+            items['Rank'] = str(i)
+            items['Class Name'] = clas.name
+            items['Total Score of This Semester'] = clas.day_total
+            ranking_table.append(items)
+        return ranking_table
 
     def get_3_ranking_body(type):
         if type == 0:
@@ -118,6 +132,20 @@ class scoremoments:
         items = []
         for record in records:
             items.append(scoremoments.print_record_info(record))
+        return items
+
+    def get_4_scoremoments_table():
+        records = Record.objects.all().order_by("-datetime")[:4]
+        items = []
+        for record in records:
+            item = {}
+            item['Date'] = str(record.date)
+            item['Scorer'] = record.scorer.name
+            item['Subject'] = record.subject.name
+            item['Score'] = record.score
+            item['Reason'] = record.reason
+            item['Score Time'] = str(record.datetime)
+            items.append(item)
         return items
 
 

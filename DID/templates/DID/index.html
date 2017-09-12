@@ -15,11 +15,11 @@
         <b-container>
           <b-row class="justify-content-md-center">
             <b-col md="auto">
-              <b-nav is-nav-bar class="auto">
-                <b-nav-item href="#">Home</b-nav-item>
-                <b-nav-item href="#">ScoreBoard</b-nav-item>
-                <b-nav-item href="#">ScoreRanking</b-nav-item>
-                <b-nav-item href="#">ScoreMoments</b-nav-item>
+              <b-nav is-nav-bar class="auto" v-b-scrollspy="-5">
+                <b-nav-item href="#Home">Home</b-nav-item>
+                <b-nav-item href="#ScoreBoard">ScoreBoard</b-nav-item>
+                <b-nav-item href="#ScoreRanking">ScoreRanking</b-nav-item>
+                <b-nav-item href="#ScoreMoments">ScoreMoments</b-nav-item>
                 <b-nav-item href="#">ScoreZone</b-nav-item>
               </b-nav>
               <b-col>
@@ -28,7 +28,7 @@
       </b-collapse>
     </b-navbar>
 
-    <b-carousel id="carousel1" controls indicators :interval="4000" img-width="1024" img-height="480">
+    <b-carousel id="Home" controls indicators :interval="4000" img-width="1024" img-height="480">
       <b-carousel-slide caption="SFLS Discipline Inspection Department">
         <b-img slot="img" class="d-block w-100" blank width="1024" height="480" blank-color="#a51c30">
       </b-carousel-slide>
@@ -38,7 +38,9 @@
       </b-carousel-slide>
     </b-carousel>
 
-    <item-table :table_title="'ScoreBoard'" :table_data="scoreboard_data"></item-table>
+    <item-table id="ScoreBoard" :table_title="'ScoreBoard'" :table_data="scoreboard_data"></item-table>
+    <item-table id="ScoreRanking" :table_title="'ScoreRanking'" :table_data="scoreranking_data"></item-table>
+    <item-table id="ScoreMoments" :table_title="'ScoreMoments'" :table_data="scoremoments_data"></item-table>
 
 
   </div>
@@ -80,6 +82,12 @@
     })
     $.getJSON("ajax/get-scoreboard", function (result) {
       app.scoreboard_data = result;
+    })
+    $.getJSON("ajax/get-scoreranking", function (result) {
+      app.scoreranking_data = result;
+    })
+    $.getJSON("ajax/get-scoremoments", function (result) {
+      app.scoremoments_data = result;
     })
   </script>
 </body>
