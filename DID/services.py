@@ -7,6 +7,25 @@ from enum import Enum
 
 
 class scoreboard:
+    def get_table(date_required):
+        scoreboard_table = []
+        for clas in Clas.objects.all():
+            items = {}
+            items['Class'] = clas.name
+            for subject in Subject.objects.all():
+                recordQ = Record.objects.filter(
+                    date=date_required, subject=subject, clas=clas)
+                if recordQ:
+                    for record in recordQ:
+                        words = str(record.score)
+                        if record.reason:
+                            words += " (" + record.reason + ")"
+                        items[subject.name] = words
+                else:
+                    items[subject.name] = "Not Scored Yet"
+            scoreboard_table.append(items)
+        return scoreboard_table
+
     def get_table_header():
         subjects = Subject.objects.all()
         scoreboard_head = [""]
@@ -34,20 +53,16 @@ class scoreboard:
 
 
 class scoreranking:
-    def get_day_ranking_header():
-        items = ["#", "Class Name", "Total Score of Today"]
-        return items
 
-    def get_week_ranking_header():
-        items = ["#", "Class Name", "Total Score of This Week"]
-        return items
-
-    def get_month_ranking_header():
-        items = ["#", "Class Name", "Total Score of This Month"]
-        return items
-
-    def get_semester_ranking_header():
-        items = ["#", "Class Name", "Total Score of This Semester"]
+    def get_day_ranking_header(type):
+        if type == 0:
+            items = ["#", "Class Name", "Total Score of Today"]
+        elif type == 1:
+            items = ["#", "Class Name", "Total Score of This Week"]
+        elif type == 2:
+            items = ["#", "Class Name", "Total Score of This Month"]
+        else:
+            items = ["#", "Class Name", "Total Score of This Semester"]
         return items
 
     def get_3_day_ranking_body():
@@ -59,6 +74,19 @@ class scoreranking:
             items = [str(i), clas.name, clas.day_total]
             ranking_body.append(items)
         return ranking_body
+
+    def get_3_day_ranking_table():
+        clases = Clas.objects.all().order_by('-day_total')[:3]
+        i = 0
+        ranking_table = []
+        for clas in clases:
+            i += 1
+            items = {}
+            items['Rank'] = str(i)
+            items['Class Name'] = clas.name
+            items['Total Score Today'] = clas.day_total
+            ranking_table.append(items)
+        return ranking_table
 
     def get_3_ranking_body(type):
         if type == 0:
@@ -99,6 +127,20 @@ class scoremoments:
         items = []
         for record in records:
             items.append(scoremoments.print_record_info(record))
+        return items
+
+    def get_4_scoremoments_table():
+        records = Record.objects.all().order_by("-datetime")[:4]
+        items = []
+        for record in records:
+            item = {}
+            item['Date'] = str(record.date)
+            item['Scorer'] = record.scorer.name
+            item['Subject'] = record.subject.name
+            item['Score'] = record.score
+            item['Reason'] = record.reason
+            item['Score Time'] = str(record.datetime)
+            items.append(item)
         return items
 
 

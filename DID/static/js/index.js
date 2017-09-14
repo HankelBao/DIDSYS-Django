@@ -37,86 +37,13 @@ function score_submit() {
     });
 }
 
-function update_scoreboard()  {
-    $.getJSON("ajax/get-scoreboard", function(result) {
-        $("#scoreboard_header").empty();
-        $.each(result.scoreboard_head, function(i, value) {
-            line = "<th>" + value + "</th>";
-            $("#scoreboard_header").append(line);
-        })
-        $("#scoreboard_body").empty();
-        $.each(result.scoreboard_body, function(i, value) {
-            $("#scoreboard_body").append("<tr>");
-            $.each(value, function(i, item) {
-                line = "<td>" + item + "</td>";
-                $("#scoreboard_body").append(line);
-            })
-            $("#scoreboard_body").append("</tr>");
-        })
-    })
+
+
+
+function more_on_scoreboard_click() {
+    var myDate = new Date(); 
+    more_on_scoreboard(myDate.getFullYear()+'-'+(myDate.getMonth()+1)+'-'+myDate.getDate());
 }
-
-function update_scoreranking()  {
-    $.getJSON("ajax/get-scoreranking", function(result) {
-        $("#scoreranking_header").empty();
-        $.each(result.scoreranking_head, function(i, value) {
-            line = "<th>" + value + "</th>";
-            $("#scoreranking_header").append(line);
-        })
-        $("#scoreranking_body").empty();
-        $.each(result.scoreranking_body, function(i, value) {
-            $("#scoreranking_body").append("<tr>");
-            $.each(value, function(i, item) {
-                line = "<td>" + item + "</td>";
-                $("#scoreranking_body").append(line);
-            })
-            $("#scoreranking_body").append("</tr>");
-        })
-    })
-}
-
-function update_scoremoements() {
-    $.getJSON("ajax/get-scoremoments", function(result) {
-        $("#scoremoments_content").empty();
-        $.each(result.scoremoemnts, function(i, value) {
-            line = "<li class='list-group-item'>" + value + "</li>";
-            $("#scoremoments_content").append(line);
-        })
-    })
-}
-
-function update_index() {
-    $.getJSON("ajax/get-index", function(result) {
-        $("#scoreboard-body").empty();
-        $.each(result.scoreboard_body, function(i, value) {
-            $("#scoreboard-body").append("<tr>");
-            $.each(value, function(i, item) {
-                line = "<td>" + item + "</td>";
-                $("#scoreboard-body").append(line);
-            })
-            $("#scoreboard-body").append("</tr>");
-        })
-        $("#scoreranking-body").empty();
-        $.each(result.scoreranking_body, function(i, value) {
-            $("#scoreranking-body").append("<tr>");
-            $.each(value, function(i, item) {
-                line = "<td>" + item + "</td>";
-                $("#scoreranking-body").append(line);
-            })
-            $("#scoreranking-body").append("</tr>");
-        })
-        $("#scoremoments-content").empty();
-        $.each(result.scoremoments, function(i, value) {
-            line = "<li class='list-group-item'>" + value + "</li>";
-            $("#scoremoments-content").append(line);
-        })
-    })
-}
-
-$(document).ready(function(){
-    update_index();
-});
-
 function more_on_scoreboard(input_date) {
     $.ajax({
         type:"GET",
@@ -128,6 +55,9 @@ function more_on_scoreboard(input_date) {
     });
 }
 
+function more_on_scoreranking_click() {
+    more_on_scoreranking(0);
+}
 function more_on_scoreranking(count_unit) {
     $.ajax({
         type:"GET",
@@ -137,4 +67,59 @@ function more_on_scoreranking(count_unit) {
             $("#modal_content").html(result);
         }
     });   
+}
+var app = new Vue({
+    el: '#rootNode',
+    data: {
+        scoreboard_data: new Array(),
+        scoreranking_data: new Array(),
+        scoremoments_data: new Array(),
+        scoreboard_modal_data: new Array(),
+        scoreranking_modal_data: new Array(),
+        scoremoments_modal_data: new Array(),
+    }
+})
+Vue.component('item-table', {
+    name: 'item-table',
+    props: {
+        table_title: String,
+        table_data: Array,
+        when_click: String,
+    },
+    template: '<b-container>\
+    <b-row><br><br><br><br></b-row>\
+    <b-row>\
+      <b-col>\
+        <h1 style="text-align:center">{{table_title}}</h1>\
+      </b-col>\
+    </b-row>\
+    <b-row>\
+      <b-col>\
+        <b-table :items="table_data">\
+        </b-table>\
+      </b-col>\
+    </b-row>\
+    <b-row>\
+    <b-col v-if="when_click">\
+        <div style="text-align:right">\
+        <a :onclick="when_click" data-toggle="modal" data-target="#modal"><u>More On {{table_title}} >></u></a>\
+        </div>\
+    </b-col>\
+  </b-row>\
+  </b-container>'
+})
+
+$(document).ready(function () {
+    update_index()
+})
+function update_index() {
+    $.getJSON("ajax/get-scoreboard", function (result) {
+        app.scoreboard_data = result;
+    })
+    $.getJSON("ajax/get-scoreranking", function (result) {
+        app.scoreranking_data = result;
+    })
+    $.getJSON("ajax/get-scoremoments", function (result) {
+        app.scoremoments_data = result;
+    })
 }
