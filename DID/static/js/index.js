@@ -14,6 +14,7 @@ Vue.component('item-table', {
     props: {
         table_title: String,
         table_data: Array,
+        modal_target: String,
     },
     template: '<b-container>\
     <b-row><br><br><br><br></b-row>\
@@ -30,7 +31,9 @@ Vue.component('item-table', {
     </b-row>\
     <b-row>\
     <b-col>\
-        <\
+        <div style="text-align:right">\
+            <a v-b-modal="modal_target"><u>More On {{table_title}}</u></a>\
+        </div>\
     </b-col>\
   </b-row>\
   </b-container>'

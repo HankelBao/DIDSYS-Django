@@ -30,29 +30,33 @@
 
     <b-carousel id="Home" controls indicators :interval="4000">
       <b-carousel-slide caption="SFLS Discipline Inspection Department">
-          <p class="lead text-white">A just, powerful department scoring reasonable marks</p>
-          <b-img slot="img" class="d-block img-fluid w-100" width="1024" height="576" src="/static/pic/1.jpg" alt="image slot"></b-img>
-      </b-carousel-slide>      
+        <p class="lead text-white">A just, powerful department scoring reasonable marks</p>
+        <b-img slot="img" class="d-block img-fluid w-100" width="1024" height="576" src="/static/pic/1.jpg" alt="image slot"></b-img>
+      </b-carousel-slide>
       <b-carousel-slide caption="SFLS Discipline Inspection Department">
-          <p class="lead text-white">A just, powerful department scoring reasonable marks</p>
-          <b-img slot="img" class="d-block img-fluid w-100" width="1024" height="576" src="/static/pic/2.jpg" alt="image slot"></b-img>
-      </b-carousel-slide>      
+        <p class="lead text-white">A just, powerful department scoring reasonable marks</p>
+        <b-img slot="img" class="d-block img-fluid w-100" width="1024" height="576" src="/static/pic/2.jpg" alt="image slot"></b-img>
+      </b-carousel-slide>
       <b-carousel-slide caption="SFLS Discipline Inspection Department">
-          <p class="lead text-white">A just, powerful department scoring reasonable marks</p>
-          <b-img slot="img" class="d-block img-fluid w-100" width="1024" height="576" src="/static/pic/3.jpg" alt="image slot"></b-img>
-      </b-carousel-slide>      
+        <p class="lead text-white">A just, powerful department scoring reasonable marks</p>
+        <b-img slot="img" class="d-block img-fluid w-100" width="1024" height="576" src="/static/pic/3.jpg" alt="image slot"></b-img>
+      </b-carousel-slide>
       <b-carousel-slide caption="SFLS Discipline Inspection Department">
-          <p class="lead text-white">A just, powerful department scoring reasonable marks</p>
-          <b-img slot="img" class="d-block img-fluid w-100" width="1024" height="576" src="/static/pic/4.jpg" alt="image slot"></b-img>
-      </b-carousel-slide>      
+        <p class="lead text-white">A just, powerful department scoring reasonable marks</p>
+        <b-img slot="img" class="d-block img-fluid w-100" width="1024" height="576" src="/static/pic/4.jpg" alt="image slot"></b-img>
+      </b-carousel-slide>
     </b-carousel>
 
-    <item-table id="ScoreBoard" :table_title="'ScoreBoard'" :table_data="scoreboard_data"></item-table>
+    <item-table id="ScoreBoard" :table_title="'ScoreBoard'" :table_data="scoreboard_data" :modal_target="'modal1'"></item-table>
     <item-table id="ScoreRanking" :table_title="'ScoreRanking'" :table_data="scoreranking_data"></item-table>
     <item-table id="ScoreMoments" :table_title="'ScoreMoments'" :table_data="scoremoments_data"></item-table>
 
+    <b-modal size="lg" id="modal1" title="More On ScoreBoard">
+      Hello From Modal 1!
+    </b-modal>
+
   </div>
-  
+
   <script src="/static/js/jquery.js"></script>
   <script src="/static/vue.js"></script>
   <script src="/static/polyfill.min.js"></script>
