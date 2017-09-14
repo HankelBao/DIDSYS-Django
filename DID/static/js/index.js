@@ -28,6 +28,11 @@ Vue.component('item-table', {
         </b-table>\
       </b-col>\
     </b-row>\
+    <b-row>\
+    <b-col>\
+        <\
+    </b-col>\
+  </b-row>\
   </b-container>'
 })
 
