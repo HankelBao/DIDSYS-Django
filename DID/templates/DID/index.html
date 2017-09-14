@@ -48,28 +48,28 @@
     <item-table id="ScoreMoments" :table_title="'ScoreMoments'" :table_data="scoremoments_data"></item-table>
 
     <div id="ScoreZone" class="py-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <h1 class="text-center">ScoreZone</h1>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center">ScoreZone</h1>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <form class="">
-                <div class="form-group"> <label>Username</label>
-                  <input id="login_username" type="text" class="form-control" placeholder="Enter username"> </div>
-                <div class="form-group"> <label>Password</label>
-                  <input id="login_password" type="password" class="form-control" placeholder="Enter password"> </div>
-                <button onclick="login()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Login</button>
-              </form>
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <form class="">
+              <div class="form-group"> <label>Username</label>
+                <input id="login_username" type="text" class="form-control" placeholder="Enter username"> </div>
+              <div class="form-group"> <label>Password</label>
+                <input id="login_password" type="password" class="form-control" placeholder="Enter password"> </div>
+              <button onclick="login()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">Login</button>
+            </form>
           </div>
         </div>
       </div>
+    </div>
+
   </div>
-  {% endverbatim %}
-  {% include 'DID/modals.html' %}
+  {% endverbatim %} {% include 'DID/modals.html' %}
 
   <script src="/static/js/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
