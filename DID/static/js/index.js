@@ -1,19 +1,3 @@
-function login() {
-    scorer_username = $("#login_username").val();
-    scorer_password = $("#login_password").val();
-    $.ajax({
-        type: "POST",
-        url: "ajax/get-scorerboard",
-        data: {
-            "username": scorer_username,
-            "password": scorer_password
-        },
-        success: function (result) {
-            $("#modal_content").html(result);
-        }
-    });
-}
-
 function score_submit() {
     items_counter = $("#items_counter").val();
     var items = new Array();
@@ -35,7 +19,7 @@ function score_submit() {
         },
         success: function (result) {
             $("#modal_content").html(result);
-            update_index();
+            app.update_index();
         }
     });
 }
@@ -84,6 +68,34 @@ var app = new Vue({
         scoreboard_modal_data: new Array(),
         scoreranking_modal_data: new Array(),
         scoremoments_modal_data: new Array(),
+    },
+    methods: {
+        login: function (event) {
+            scorer_username = $("#login_username").val();
+            scorer_password = $("#login_password").val();
+            $.ajax({
+                type: "POST",
+                url: "ajax/get-scorerboard",
+                data: {
+                    "username": scorer_username,
+                    "password": scorer_password
+                },
+                success: function (result) {
+                    $("#modal_content").html(result);
+                }
+            });
+        },
+        update_index: function (event) {
+            $.getJSON("ajax/get-scoreboard", function (result) {
+                app.scoreboard_data = result;
+            })
+            $.getJSON("ajax/get-scoreranking", function (result) {
+                app.scoreranking_data = result;
+            })
+            $.getJSON("ajax/get-scoremoments", function (result) {
+                app.scoremoments_data = result;
+            })
+        }
     }
 })
 
@@ -118,17 +130,5 @@ Vue.component('item-table', {
 })
 
 $(document).ready(function () {
-    update_index()
+    app.update_index();
 })
-
-function update_index() {
-    $.getJSON("ajax/get-scoreboard", function (result) {
-        app.scoreboard_data = result;
-    })
-    $.getJSON("ajax/get-scoreranking", function (result) {
-        app.scoreranking_data = result;
-    })
-    $.getJSON("ajax/get-scoremoments", function (result) {
-        app.scoremoments_data = result;
-    })
-}
