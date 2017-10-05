@@ -16,7 +16,7 @@ from . import services
 def index(request):
     content = {}
     content['scoreboard_head'] = services.scoreboard.get_table_header()
-    content['scoreranking_head'] = services.scoreranking.get_day_ranking_header()
+    #content['scoreranking_head'] = services.scoreranking.get_day_ranking_header()
     return render(request, 'DID/index.html', content)
 
 
@@ -60,11 +60,12 @@ def scorerboard(request):
 @csrf_exempt
 def scorerboard_submit(request):
     scores = request.POST.getlist('scores')
+    scores_reason = request.POST.getlist('scores_reason')
     username = request.POST['username']
     password = request.POST['password']
     scorer = services.scorezone.check_account(username, password)
     if scorer:
-        services.scorezone.update_scores(scorer, scores)
+        services.scorezone.update_scores(scorer, scores, scores_reason)
         services.scorezone.update_class_day_total()
         return render(request, 'ajax/scorerboard_submit.html')
     else:
@@ -73,26 +74,17 @@ def scorerboard_submit(request):
 
 @csrf_exempt
 def get_scoreboard(request):
-    content = {}
-    content['scoreboard_head'] = services.scoreboard.get_table_header()
-    content['scoreboard_body'] = services.scoreboard.get_table_body(
-        datetime.date.today())
-    return HttpResponse(json.dumps(content), content_type="application/json")
+    return HttpResponse(json.dumps(services.scoreboard.get_table(datetime.date.today())), content_type="application/json")
 
 
 @csrf_exempt
 def get_scoreranking(request):
-    content = {}
-    content['scoreranking_head'] = services.scoreranking.get_day_ranking_header()
-    content['scoreranking_body'] = services.scoreranking.get_3_day_ranking_body()
-    return HttpResponse(json.dumps(content), content_type="application/json")
+    return HttpResponse(json.dumps(services.scoreranking.get_3_day_ranking_table()), content_type="application/json")
 
 
 @csrf_exempt
 def get_scoremoments(request):
-    content = {}
-    content['scoremoments'] = services.scoremoments.get_4_scoremoments()
-    return HttpResponse(json.dumps(content), content_type="application/json")
+    return HttpResponse(json.dumps(services.scoremoments.get_4_scoremoments_table()), content_type="application/json")
 
 
 @csrf_exempt
@@ -103,3 +95,23 @@ def more_on_scoreboard(request):
     content['scoreboard_body'] = services.scoreboard.get_table_body(
         content['date'])
     return render(request, 'ajax/more_on_scoreboard.html', content)
+
+
+@csrf_exempt
+def more_on_scoreranking(request):
+    unit_type = int(request.GET['count_unit'])
+
+    content = {}
+    if unit_type == 0:
+        content['count_unit'] = "Daily"
+    elif unit_type == 1:
+        content['count_unit'] = "Weekly"
+    elif unit_type == 2:
+        content['count_unit'] = "Monthly"
+    else:
+        content['count_unit'] = "Semester"
+    content['scoreranking_head'] = services.scoreranking.get_day_ranking_header(
+        unit_type)
+    content['scoreranking_body'] = services.scoreranking.get_3_ranking_body(
+        unit_type)
+    return render(request, 'ajax/more_on_scoreranking.html', content)
