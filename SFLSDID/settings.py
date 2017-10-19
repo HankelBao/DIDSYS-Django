@@ -26,10 +26,9 @@ SECRET_KEY = '#u*bkk*20w=5w9$20xhvq24cd0i3fokhfm(9jvjs_s5-2b&^0u'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.31.156',
     '127.0.0.1',
     'localhost',
-    '172.16.106.39'
+    '172.16.0.25',
 ]
 
 
@@ -123,5 +122,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+STATIC_ROOT = '/home/hankelbao/DIDSYS-Django/DID/static/'
 STATIC_URL = '/static/'
