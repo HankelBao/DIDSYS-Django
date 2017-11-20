@@ -5,7 +5,9 @@
  * Licensed under MIT
  * Based on Bootstrap
 */
-@import url("https://fonts.googleapis.com/css?family=Lato");
+/*
+ * @import url("https://fonts.googleapis.com/css?family=Lato");
+ */
 html, body {
   scroll-behavior: smooth; }
 
