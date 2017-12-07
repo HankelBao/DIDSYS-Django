@@ -250,8 +250,8 @@ class scorezone:
                     for record in recordQ:
                         if scores[i]:
                             record.score = scores[i]
-                            if scores_reason[i]:
-                                record.reason = scores_reason[i]
+                            # if scores_reason[i]:
+                            record.reason = scores_reason[i]
                             record.save()
                         else:
                             record.delete()
@@ -260,6 +260,7 @@ class scorezone:
                         Record.objects.create(date=datetime.date.today(), datetime=datetime.datetime.now(),
                                               clas=clas, subject=subject, scorer=scorer, score=scores[i])
         scorezone.update_class_day_total()
-        scorezone.update_class_month_total()
-        scorezone.update_class_week_total()
-        scorezone.update_class_semester_total()
+
+#        scorezone.update_class_month_total()
+#        scorezone.update_class_week_total()
+#        scorezone.update_class_semester_total()

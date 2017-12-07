@@ -43,8 +43,8 @@ class Record(models.Model):
     clas = models.ForeignKey(Clas)
     subject = models.ForeignKey(Subject)
     scorer = models.ForeignKey(Scorer)
-    score = models.IntegerField()
-    reason = models.TextField(null=True)
+    score = models.FloatField()
+    reason = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.score)
