@@ -3,6 +3,7 @@ from .models import Clas
 from .models import Scorer
 from .models import Record
 import datetime
+import calendar
 from enum import Enum
 
 
@@ -190,7 +191,7 @@ class scorezone:
         for clas in clases:
             month_total = 0
             recordQ = Record.objects.filter(
-                date__range=(datetime.datetime(now.year, now.month, 1), datetime.datetime(now.year, now.month + 1, 1) - datetime.timedelta(days=1)), clas=clas)
+                date__range=(datetime.datetime(now.year, now.month, 1), datetime.datetime(now.year, now.month, calendar.monthrange(now.year, now.month)[1])), clas=clas)
             if recordQ:
                 for record in recordQ:
                     month_total += record.score
@@ -261,6 +262,6 @@ class scorezone:
                                               clas=clas, subject=subject, scorer=scorer, score=scores[i])
         scorezone.update_class_day_total()
 
-#        scorezone.update_class_month_total()
-#        scorezone.update_class_week_total()
-#        scorezone.update_class_semester_total()
+        scorezone.update_class_month_total()
+        scorezone.update_class_week_total()
+        scorezone.update_class_semester_total()

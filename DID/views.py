@@ -66,9 +66,6 @@ def scorerboard_submit(request):
     scorer = services.scorezone.check_account(username, password)
     if scorer:
         services.scorezone.update_scores(scorer, scores, scores_reason)
-        """
-        # services.scorezone.update_class_day_total()
-        """
         return render(request, 'ajax/scorerboard_submit.html')
     else:
         return HttpResponse("Hackers are not allowed here!")
