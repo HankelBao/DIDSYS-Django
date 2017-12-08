@@ -17,6 +17,11 @@
         <div class="row">
           <div class="col-md-12">
             <h1 class="text-center">ScoreBoard</h1>
+			{% if scorer_admin %}
+				<input type="text" id="scorer_date" value="{{scorer_admin_date}}" class="form-control">
+			{% else %}
+				<input type="hidden" id="scorer_date" value="">
+			{% endif %}
           </div>
         </div>
         <div class="row">

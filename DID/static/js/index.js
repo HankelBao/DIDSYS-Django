@@ -80,22 +80,42 @@ function score_submit() {
         items[i] = $("#" + i).val();
         items_reason[i] = $("#" + i + "R").val();
     }
-    $("#modal_content").html("We are busy loading data and checking your account.<br>Please wait patiently...");
-    $.ajax({
-        type: "POST",
-        traditional: true,
-        url: "ajax/score-submit.html",
-        data: {
-            "scores": items,
-            "scores_reason": items_reason,
-            "username": scorer_username,
-            "password": scorer_password
-        },
-        success: function (result) {
-            $("#modal_content").html(result);
-            app.update_index();
-        }
-    });
+	scorer_date = $("#scorer_date").val();
+	$("#modal_content").html("We are busy loading data and checking your account.<br>Please wait patiently...");
+	if (scorer_date != "") {
+		$.ajax({
+			type: "POST",
+			traditional: true,
+			url: "ajax/score-submit.html",
+			data: {
+				"scores": items,
+				"scores_reason": items_reason,
+				"username": scorer_username,
+				"password": scorer_password,
+				"scorer_date": scorer_date
+			},
+			success: function (result) {
+				$("#modal_content").html(result);
+				app.update_index();
+			}
+		});
+	} else {
+		$.ajax({
+			type: "POST",
+			traditional: true,
+			url: "ajax/score-submit.html",
+			data: {
+				"scores": items,
+				"scores_reason": items_reason,
+				"username": scorer_username,
+				"password": scorer_password
+			},
+			success: function (result) {
+				$("#modal_content").html(result);
+				app.update_index();
+			}
+		});
+	}
 }
 
 function more_on_scoreboard_click() {

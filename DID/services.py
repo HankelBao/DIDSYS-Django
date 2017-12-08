@@ -240,13 +240,13 @@ class scorezone:
             scoreboard_body.append(items)
         return scoreboard_body
 
-    def update_scores(scorer, scores, scores_reason):
+    def update_scores(scorer, scores, scores_reason, scorer_date=datetime.date.today()):
         i = 0
         for clas in scorer.clases.all():
             for subject in scorer.subjects.all():
                 i += 1
                 recordQ = Record.objects.filter(
-                    date=datetime.date.today(), subject=subject, clas=clas)
+                    date=scorer_date, subject=subject, clas=clas)
                 if recordQ:
                     for record in recordQ:
                         if scores[i]:
@@ -258,10 +258,9 @@ class scorezone:
                             record.delete()
                 else:
                     if scores[i]:
-                        Record.objects.create(date=datetime.date.today(), datetime=datetime.datetime.now(),
+                        Record.objects.create(date=scorer_date, datetime=datetime.datetime.now(),
                                               clas=clas, subject=subject, scorer=scorer, score=scores[i])
         scorezone.update_class_day_total()
-
         scorezone.update_class_month_total()
         scorezone.update_class_week_total()
         scorezone.update_class_semester_total()

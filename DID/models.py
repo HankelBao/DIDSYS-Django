@@ -32,6 +32,7 @@ class Scorer(models.Model):
     subjects = models.ManyToManyField(Subject)
     clases = models.ManyToManyField(Clas)
     is_service = models.BooleanField(default=True)
+    admin = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
