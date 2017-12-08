@@ -2693,7 +2693,7 @@ button.list-group-item-danger {
 
 @media (min-width: 992px) {
   .modal-lg {
-    max-width: 1200px; } }
+    max-width: 900px; } }
 
 .nav {
   display: flex;
