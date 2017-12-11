@@ -72,7 +72,7 @@ def scorerboard_submit(request):
             scorer_date = request.POST['scorer_date']
             services.scorezone.update_scores(scorer, scores, scores_reason, scorer_date)
         else:
-            services.scorezone.update_scores(scorer, scores, scores_reason)
+            services.scorezone.update_scores(scorer, scores, scores_reason, datetime.date.today())
         return render(request, 'ajax/scorerboard_submit.html')
     else:
         return HttpResponse("Hackers are not allowed here!")
