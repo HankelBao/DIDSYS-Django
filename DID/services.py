@@ -258,8 +258,12 @@ class scorezone:
                             record.delete()
                 else:
                     if scores[i]:
-                        Record.objects.create(date=scorer_date, datetime=datetime.datetime.now(),
-                                              clas=clas, subject=subject, scorer=scorer, score=scores[i])
+                        if scores_reason[i]:
+                            Record.objects.create(date=scorer_date, datetime=datetime.datetime.now(),
+                                                  clas=clas, subject=subject, scorer=scorer, score=scores[i], reason=scores_reason[i])
+                        else:
+                            Record.objects.create(date=scorer_date, datetime=datetime.datetime.now(),
+                                                  clas=clas, subject=subject, scorer=scorer, score=scores[i])
         scorezone.update_class_day_total()
         scorezone.update_class_month_total()
         scorezone.update_class_week_total()
