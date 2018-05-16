@@ -11,12 +11,11 @@ from .models import Scorer
 from .models import Record
 from . import services
 
-
+# Here begin my test
 @csrf_exempt
 def index(request):
     content = {}
     content['scoreboard_head'] = services.scoreboard.get_table_header()
-    #content['scoreranking_head'] = services.scoreranking.get_day_ranking_header()
     return render(request, 'DID/index.html', content)
 
 

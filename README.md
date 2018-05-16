@@ -23,6 +23,14 @@ The school doesn't allow me to upload the system to the Internet. Fine, let's no
 I will put the database and backend on another server and just leave some html files in the school server.
 Also, this means redesigning.
 
+### API
++ /scorebaord/get_board
++ /scorebaord/get_board_by_date
++ /scorebaord/get_3_rank
++ /scorebaord/get_rank
++ /scoreboard/get_3_moments
++ /scoreboard/get_moments
+
 ### TODO
 Redesign better API and recode the views.py
 

@@ -41,9 +41,9 @@ class Scorer(models.Model):
 class Record(models.Model):
     date = models.DateField()
     datetime = models.DateTimeField()
-    clas = models.ForeignKey(Clas)
-    subject = models.ForeignKey(Subject)
-    scorer = models.ForeignKey(Scorer)
+    clas = models.ForeignKey(Clas, on_delete=models.DO_NOTHING)
+    subject = models.ForeignKey(Subject, on_delete=models.DO_NOTHING)
+    scorer = models.ForeignKey(Scorer, on_delete=models.DO_NOTHING)
     score = models.FloatField()
     reason = models.TextField(null=True, blank=True)
 
