@@ -20,22 +20,6 @@ from SFLSDID import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    # Index
-    url(r'^$', views.index),
-
-    # Ajax
-    url(r'^ajax/get-index', views.get_index),
-    url(r'^ajax/get-scoreboard', views.get_scoreboard),
-    url(r'^ajax/get-scoreranking', views.get_scoreranking),
-    url(r'^ajax/get-scoremoments', views.get_scoremoments),
-
-    # Ajax View
-    url(r'^ajax/get-scorerboard', views.scorerboard),
-    url(r'^ajax/score-submit', views.scorerboard_submit),
-    url(r'^ajax/more-on-scoreboard', views.more_on_scoreboard),
-    url(r'^ajax/more-on-scoreranking', views.more_on_scoreranking),
-
-    # APIs
     url(r'^scoreboard/board/get$', views.scoreboard_board_get),
     url(r'^scoreboard/board/get_by_date$', views.scoreboard_board_get_by_date),
     url(r'^scoreboard/rank/get$', views.scoreboard_rank_get),
@@ -43,6 +27,5 @@ urlpatterns = [
     url(r'^scorer/login$', views.scorer_login),
     url(r'^scorer/submit_score$', views.scorer_submit_score),
 
-    # Admin
     url(r'^admin/', admin.site.urls),
 ]
