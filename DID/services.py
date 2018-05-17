@@ -89,6 +89,35 @@ class scoreranking:
             ranking_table.append(items)
         return ranking_table
 
+    def get_3_ranking_table(type):
+        if type == 'semisterly':
+            clases = Clas.objects.all().order_by('-semister_total')[:3]
+        elif type == 'weekly':
+            clases = Clas.objects.all().order_by('-week_total')[:3]
+        elif type == 'monnthly':
+            clases = Clas.objects.all().order_by('-month_total')[:3]
+        else:
+            clases = Clas.objects.all().order_by('-semister_total')[:3]
+
+        ranking_table = []
+        i = 0
+        for clas in clases:
+            i += 1
+            items = {}
+            items['Rank'] = str(i)
+            items['Class Name'] = clas.name
+            if type == 'daily':
+                items['Total Score of Today'] = clas.day_total
+            elif type == 'weekly':
+                items['Total Score of This Week'] = clas.week_total
+            elif type == 'monthly':
+                items['Total Score of This Month'] = clas.month_total
+            else:
+                items['Total Score of This Semister'] = clas.semister_total
+
+            ranking_table.append(items)
+        return ranking_table
+
     def get_3_ranking_body(type):
         if type == 0:
             clases = Clas.objects.all().order_by('-semister_total')[:3]
@@ -146,10 +175,6 @@ class scoremoments:
 
 
 class scorezone:
-    class check_account_return(Enum):
-        wrong_password = 0
-        wrong_username = 1
-
     def check_account(username, password):
         scorers = Scorer.objects.all()
         for scorer in scorers:
@@ -157,8 +182,8 @@ class scorezone:
                 if scorer.password == password:
                     return scorer
                 else:
-                    return scorezone.check_account_return.wrong_password
-        return scorezone.check_account_return.wrong_username
+                    return False
+        return False
 
     def update_class_day_total():
         clases = Clas.objects.all()
@@ -236,6 +261,7 @@ class scorezone:
                     keys['score'] = 'NULL'
                     keys['reason'] = 'NULL'
                 keys['index'] = index
+                keys['indexR'] = str(index)+'R'
                 items.append(keys)
             scoreboard_body.append(items)
         return scoreboard_body

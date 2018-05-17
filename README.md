@@ -24,12 +24,22 @@ I will put the database and backend on another server and just leave some html f
 Also, this means redesigning.
 
 ### API
-+ /scorebaord/get_board
-+ /scorebaord/get_board_by_date
-+ /scorebaord/get_3_rank
-+ /scorebaord/get_rank
-+ /scoreboard/get_3_moments
-+ /scoreboard/get_moments
++ /scorebaord/board/get
++ /scorebaord/board/get_by_date
++ /scorebaord/rank/get
++ /scorebaord/rank/get_3
++ /scoreboard/moments/get
++ /scoreboard/moments/get_3
++ /scorer/login
+
+### Accidents
+It has been three hours and I still cannot use jsonp in Django. It may simply not supported officially.
+After the last attempt, I will switch to some other framework or language if I still fail.
+
+#### Aftermath
+I managed to solve it via Access-Control-Allow-Origin
+Maybe It won't be quite safe.
+Anyway, I solved the problem.
 
 ### TODO
 Redesign better API and recode the views.py
