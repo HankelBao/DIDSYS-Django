@@ -29,6 +29,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     '173.199.123.241',
+    'sfls.site',
+    'www.sfls.site',
 ]
 
 
