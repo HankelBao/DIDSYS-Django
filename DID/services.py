@@ -159,13 +159,14 @@ class scoremoments:
             items.append(scoremoments.print_record_info(record))
         return items
 
-    def get_4_scoremoments_table():
-        records = Record.objects.all().order_by("-datetime")[:4]
+    def get_scoremoments_table():
+        records = Record.objects.all().order_by("-datetime")[:8]
         items = []
         for record in records:
             item = {}
             item['Date'] = str(record.date)
             item['Scorer'] = record.scorer.name
+            item['Class'] = record.clas.name
             item['Subject'] = record.subject.name
             item['Score'] = record.score
             item['Reason'] = record.reason
@@ -173,6 +174,24 @@ class scoremoments:
             items.append(item)
         return items
 
+    def get_scorements_table_by_class(className):
+        recordQ = Clas.objects.filter(name=className)
+        if recordQ:
+            for record in recordQ:
+                clas = record
+                records = Record.objects.filter(clas=clas, score__lt=10).order_by("-datetime")[:20]
+                items = []
+                for record in records:
+                    item = {}
+                    item['Date'] = str(record.date)
+                    item['Scorer'] = record.scorer.name
+                    item['Class'] = record.clas.name
+                    item['Subject'] = record.subject.name
+                    item['Score'] = record.score
+                    item['Reason'] = record.reason
+                    item['Score Time'] = str(record.datetime)
+                    items.append(item)
+                return items
 
 class scorezone:
     def check_account(username, password):

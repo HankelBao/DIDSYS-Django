@@ -39,6 +39,17 @@ def scoreboard_rank_get_by_type(request):
     content['data'] = services.scoreranking.get_3_ranking_table(rank_type)
     return json_cors_response(content)
 
+def scoreboard_moments_get(request):
+    content = {}
+    content['data'] = services.scoremoments.get_scoremoments_table()
+    return json_cors_response(content)
+
+def scoreboard_moments_get_by_class(request):
+    content = {}
+    className = request.GET['className']
+    content['data'] = services.scoremoments.get_scorements_table_by_class(className)
+    return json_cors_response(content)
+
 @csrf_exempt
 def scorer_login(request):
     content = {}
