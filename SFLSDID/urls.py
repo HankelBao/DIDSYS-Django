@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^scoreboard/moments/get$', views.scoreboard_moments_get),
     url(r'^scoreboard/moments/get_by_class$', views.scoreboard_moments_get_by_class),
     url(r'^scorer/login$', views.scorer_login),
+    url(r'^scorer/get_scores_by_date$', views.scorer_get_scores_by_date),
     url(r'^scorer/submit_score$', views.scorer_submit_score),
 
     url(r'^admin/', admin.site.urls),

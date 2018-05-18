@@ -75,6 +75,21 @@ def scorer_login(request):
     return json_cors_response(content)
 
 @csrf_exempt
+def scorer_get_scores_by_date(request):
+    content = {}
+    username = request.POST['username']
+    password = request.POST['password']
+    date = request.POST['date']
+    return_status = services.scorezone.check_account(username, password)
+    if return_status == False:
+        content['status'] = 0
+        return json_cors_response(content)
+
+    scorer = return_status
+    content["scorerboard_body"] = services.scorezone.load_scoreboard_body(scorer, date)
+    return json_cors_response(content)
+
+@csrf_exempt
 def scorer_submit_score(request):
     scores = request.POST.getlist('scores')
     scores_reason = request.POST.getlist('scores_reason')

@@ -259,7 +259,7 @@ class scorezone:
             items.append(subject.name)
         return items
 
-    def load_scoreboard_body(scorer):
+    def load_scoreboard_body(scorer, date=datetime.date.today()):
         scoreboard_body = []
         index = 0
         for clas in scorer.clases.all():
@@ -268,7 +268,7 @@ class scorezone:
                 keys = {}
                 index += 1
                 recordQ = Record.objects.filter(
-                    date=datetime.date.today(), subject=subject, clas=clas)
+                    date=date, subject=subject, clas=clas)
                 if recordQ:
                     for record in recordQ:
                         keys['score'] = record.score
