@@ -16,19 +16,21 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from DID import views as views
-from SFLSDID import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^scoreboard/board/get$', views.scoreboard_board_get),
-    url(r'^scoreboard/board/get_by_date$', views.scoreboard_board_get_by_date),
-    url(r'^scoreboard/rank/get$', views.scoreboard_rank_get),
-    url(r'^scoreboard/rank/get_by_type$', views.scoreboard_rank_get_by_type),
-    url(r'^scoreboard/moments/get$', views.scoreboard_moments_get),
-    url(r'^scoreboard/moments/get_by_class$', views.scoreboard_moments_get_by_class),
-    url(r'^scorer/login$', views.scorer_login),
-    url(r'^scorer/get_scores_by_date$', views.scorer_get_scores_by_date),
+    url(r'^scoreboard/get_by_date$', views.scoreboard_get_by_date),
+    url(r'^scorerank/get_by_type$', views.scorerank_get_by_type),
+    url(r'^scoremoments/query$', views.scoremoments_query),
+    url(r'^scorer/signin$', views.scorer_login),
+    url(r'^scorer/signout$', views.scorer_session_del),
+    url(r'^scorer/get_session$', views.scorer_get_session),
+    url(r'^scorer/get_scores$', views.scorer_get_scores),
     url(r'^scorer/submit_score$', views.scorer_submit_score),
+    url(r'^scorer/update_totals$', views.scorer_update_totals),
+
+    url(r'^scorers/get_names$', views.scorers_get_names),
+    url(r'^classes/get_names$', views.classes_get_names),
+    url(r'^subjects/get_names$', views.subjects_get_names),
 
     url(r'^admin/', admin.site.urls),
 ]

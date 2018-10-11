@@ -1,0 +1,231 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALLOWED_HOSTS	SFLSDID/settings.py	/^ALLOWED_HOSTS = [$/;"	v
+AUTH_PASSWORD_VALIDATORS	SFLSDID/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	v
+BASE_DIR	SFLSDID/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	v
+Clas	DID/models.py	/^class Clas(models.Model):$/;"	c
+DATABASES	SFLSDID/settings.py	/^DATABASES = {$/;"	v
+DEBUG	SFLSDID/settings.py	/^DEBUG = True$/;"	v
+DidConfig	DID/apps.py	/^class DidConfig(AppConfig):$/;"	c
+INSTALLED_APPS	SFLSDID/settings.py	/^INSTALLED_APPS = [$/;"	v
+LANGUAGE_CODE	SFLSDID/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	v
+MIDDLEWARE	SFLSDID/settings.py	/^MIDDLEWARE = [$/;"	v
+Migration	DID/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0002_scorer_password.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0003_scorer_score.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0004_auto_20170810_0604.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0005_auto_20170810_1159.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0006_auto_20170811_0527.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0007_clas_register_year.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0008_record_datetime.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0009_subject_weeky.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0010_record_reason.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0011_auto_20170907_2047.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0012_auto_20171201_1305.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0013_auto_20171207_1023.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0014_scorer_admin.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0015_auto_20171220_0200.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0016_auto_20171220_0209.py	/^class Migration(migrations.Migration):$/;"	c
+Migration	DID/migrations/0017_auto_20180518_0807.py	/^class Migration(migrations.Migration):$/;"	c
+ROOT_URLCONF	SFLSDID/settings.py	/^ROOT_URLCONF = 'SFLSDID.urls'$/;"	v
+Record	DID/models.py	/^class Record(models.Model):$/;"	c
+SECRET_KEY	SFLSDID/settings.py	/^SECRET_KEY = '#u*bkk*20w=5w9$20xhvq24cd0i3fokhfm(9jvjs_s5-2b&^0u'$/;"	v
+STATIC_URL	SFLSDID/settings.py	/^STATIC_URL = '\/static\/'$/;"	v
+Scorer	DID/models.py	/^class Scorer(models.Model):$/;"	c
+Subject	DID/models.py	/^class Subject(models.Model):$/;"	c
+TEMPLATES	SFLSDID/settings.py	/^TEMPLATES = [$/;"	v
+TIME_ZONE	SFLSDID/settings.py	/^TIME_ZONE = 'UTC'$/;"	v
+USE_I18N	SFLSDID/settings.py	/^USE_I18N = True$/;"	v
+USE_L10N	SFLSDID/settings.py	/^USE_L10N = True$/;"	v
+USE_TZ	SFLSDID/settings.py	/^USE_TZ = True$/;"	v
+WSGI_APPLICATION	SFLSDID/settings.py	/^WSGI_APPLICATION = 'SFLSDID.wsgi.application'$/;"	v
+__str__	DID/models.py	/^    def __str__(self):$/;"	m	class:Clas	file:
+__str__	DID/models.py	/^    def __str__(self):$/;"	m	class:Record	file:
+__str__	DID/models.py	/^    def __str__(self):$/;"	m	class:Scorer	file:
+__str__	DID/models.py	/^    def __str__(self):$/;"	m	class:Subject	file:
+admin	DID/models.py	/^    admin = models.BooleanField(default=False)$/;"	v	class:Scorer
+application	SFLSDID/wsgi.py	/^application = get_wsgi_application()$/;"	v
+check_account	DID/services.py	/^    def check_account(username, password):$/;"	m	class:scorezone
+clas	DID/models.py	/^    clas = models.ForeignKey(Clas, on_delete=models.DO_NOTHING)$/;"	v	class:Record
+clases	DID/models.py	/^    clases = models.ManyToManyField(Clas)$/;"	v	class:Scorer
+classes_get_names	DID/views.py	/^def classes_get_names(request):$/;"	f
+create_moment_item	DID/services.py	/^    def create_moment_item(record):$/;"	m	class:scoremoments
+date	DID/models.py	/^    date = models.DateField()$/;"	v	class:Record
+datetime	DID/models.py	/^    datetime = models.DateTimeField()$/;"	v	class:Record
+day_total	DID/models.py	/^    day_total = models.IntegerField(default=0)$/;"	v	class:Clas
+dependencies	DID/migrations/0001_initial.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0002_scorer_password.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0003_scorer_score.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0004_auto_20170810_0604.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0005_auto_20170810_1159.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0006_auto_20170811_0527.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0007_clas_register_year.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0008_record_datetime.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0009_subject_weeky.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0010_record_reason.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0011_auto_20170907_2047.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0012_auto_20171201_1305.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0013_auto_20171207_1023.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0014_scorer_admin.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0015_auto_20171220_0200.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0016_auto_20171220_0209.py	/^    dependencies = [$/;"	v	class:Migration
+dependencies	DID/migrations/0017_auto_20180518_0807.py	/^    dependencies = [$/;"	v	class:Migration
+field	DID/migrations/0001_initial.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='DID.Scorer'),$/;"	v	class:Migration
+field	DID/migrations/0001_initial.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='DID.Subject'),$/;"	v	class:Migration
+field	DID/migrations/0001_initial.py	/^            field=models.ManyToManyField(to='DID.Subject'),$/;"	v	class:Migration
+field	DID/migrations/0002_scorer_password.py	/^            field=models.TextField(default=''),$/;"	v	class:Migration
+field	DID/migrations/0003_scorer_score.py	/^            field=models.IntegerField(default=0),$/;"	v	class:Migration
+field	DID/migrations/0004_auto_20170810_0604.py	/^            field=models.IntegerField(default=0),$/;"	v	class:Migration
+field	DID/migrations/0005_auto_20170810_1159.py	/^            field=models.DateField(default=django.utils.timezone.now),$/;"	v	class:Migration
+field	DID/migrations/0006_auto_20170811_0527.py	/^            field=models.IntegerField(default=0),$/;"	v	class:Migration
+field	DID/migrations/0007_clas_register_year.py	/^            field=models.IntegerField(default=0),$/;"	v	class:Migration
+field	DID/migrations/0008_record_datetime.py	/^            field=models.DateTimeField(default=django.utils.timezone.now),$/;"	v	class:Migration
+field	DID/migrations/0009_subject_weeky.py	/^            field=models.BooleanField(default=0),$/;"	v	class:Migration
+field	DID/migrations/0010_record_reason.py	/^            field=models.TextField(null=True),$/;"	v	class:Migration
+field	DID/migrations/0011_auto_20170907_2047.py	/^            field=models.BooleanField(default=False),$/;"	v	class:Migration
+field	DID/migrations/0011_auto_20170907_2047.py	/^            field=models.BooleanField(default=True),$/;"	v	class:Migration
+field	DID/migrations/0011_auto_20170907_2047.py	/^            field=models.IntegerField(default=0),$/;"	v	class:Migration
+field	DID/migrations/0011_auto_20170907_2047.py	/^            field=models.IntegerField(default=10),$/;"	v	class:Migration
+field	DID/migrations/0012_auto_20171201_1305.py	/^            field=models.FloatField(),$/;"	v	class:Migration
+field	DID/migrations/0013_auto_20171207_1023.py	/^            field=models.TextField(blank=True, null=True),$/;"	v	class:Migration
+field	DID/migrations/0014_scorer_admin.py	/^            field=models.BooleanField(default=False),$/;"	v	class:Migration
+field	DID/migrations/0015_auto_20171220_0200.py	/^            field=models.TextField(null=True),$/;"	v	class:Migration
+field	DID/migrations/0016_auto_20171220_0209.py	/^            field=models.TextField(blank=True, null=True),$/;"	v	class:Migration
+field	DID/migrations/0017_auto_20180518_0807.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='DID.Clas'),$/;"	v	class:Migration
+field	DID/migrations/0017_auto_20180518_0807.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='DID.Scorer'),$/;"	v	class:Migration
+field	DID/migrations/0017_auto_20180518_0807.py	/^            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='DID.Subject'),$/;"	v	class:Migration
+fields	DID/migrations/0001_initial.py	/^            fields=[$/;"	v	class:Migration
+full_score	DID/models.py	/^    full_score = models.IntegerField(default=10)$/;"	v	class:Subject
+get_ranking_table	DID/services.py	/^    def get_ranking_table(type, size):$/;"	m	class:scoreranking
+get_scorements_table_by_class	DID/services.py	/^    def get_scorements_table_by_class(className):$/;"	m	class:scoremoments
+get_scoremoments_table	DID/services.py	/^    def get_scoremoments_table():$/;"	m	class:scoremoments
+get_table	DID/services.py	/^    def get_table(date_required):$/;"	m	class:scoreboard
+initial	DID/migrations/0001_initial.py	/^    initial = True$/;"	v	class:Migration
+is_service	DID/models.py	/^    is_service = models.BooleanField(default=True)$/;"	v	class:Clas
+is_service	DID/models.py	/^    is_service = models.BooleanField(default=True)$/;"	v	class:Scorer
+is_service	DID/models.py	/^    is_service = models.BooleanField(default=True)$/;"	v	class:Subject
+json_cors_response	DID/views.py	/^def json_cors_response(data):$/;"	f
+load_scoreboard_body	DID/services.py	/^    def load_scoreboard_body(scorer, date=datetime.date.today()):$/;"	m	class:scorezone
+load_scoreboard_head	DID/services.py	/^    def load_scoreboard_head(scorer):$/;"	m	class:scorezone
+model_name	DID/migrations/0001_initial.py	/^            model_name='record',$/;"	v	class:Migration
+model_name	DID/migrations/0001_initial.py	/^            model_name='scorer',$/;"	v	class:Migration
+model_name	DID/migrations/0002_scorer_password.py	/^            model_name='scorer',$/;"	v	class:Migration
+model_name	DID/migrations/0003_scorer_score.py	/^            model_name='scorer',$/;"	v	class:Migration
+model_name	DID/migrations/0004_auto_20170810_0604.py	/^            model_name='record',$/;"	v	class:Migration
+model_name	DID/migrations/0004_auto_20170810_0604.py	/^            model_name='scorer',$/;"	v	class:Migration
+model_name	DID/migrations/0005_auto_20170810_1159.py	/^            model_name='record',$/;"	v	class:Migration
+model_name	DID/migrations/0006_auto_20170811_0527.py	/^            model_name='clas',$/;"	v	class:Migration
+model_name	DID/migrations/0007_clas_register_year.py	/^            model_name='clas',$/;"	v	class:Migration
+model_name	DID/migrations/0008_record_datetime.py	/^            model_name='record',$/;"	v	class:Migration
+model_name	DID/migrations/0009_subject_weeky.py	/^            model_name='subject',$/;"	v	class:Migration
+model_name	DID/migrations/0010_record_reason.py	/^            model_name='record',$/;"	v	class:Migration
+model_name	DID/migrations/0011_auto_20170907_2047.py	/^            model_name='clas',$/;"	v	class:Migration
+model_name	DID/migrations/0011_auto_20170907_2047.py	/^            model_name='scorer',$/;"	v	class:Migration
+model_name	DID/migrations/0011_auto_20170907_2047.py	/^            model_name='subject',$/;"	v	class:Migration
+model_name	DID/migrations/0012_auto_20171201_1305.py	/^            model_name='record',$/;"	v	class:Migration
+model_name	DID/migrations/0013_auto_20171207_1023.py	/^            model_name='record',$/;"	v	class:Migration
+model_name	DID/migrations/0014_scorer_admin.py	/^            model_name='scorer',$/;"	v	class:Migration
+model_name	DID/migrations/0015_auto_20171220_0200.py	/^            model_name='record',$/;"	v	class:Migration
+model_name	DID/migrations/0016_auto_20171220_0209.py	/^            model_name='record',$/;"	v	class:Migration
+model_name	DID/migrations/0017_auto_20180518_0807.py	/^            model_name='record',$/;"	v	class:Migration
+month_total	DID/models.py	/^    month_total = models.IntegerField(default=0)$/;"	v	class:Clas
+name	DID/apps.py	/^    name = 'DID'$/;"	v	class:DidConfig
+name	DID/migrations/0001_initial.py	/^            name='Clas',$/;"	v	class:Migration
+name	DID/migrations/0001_initial.py	/^            name='Record',$/;"	v	class:Migration
+name	DID/migrations/0001_initial.py	/^            name='Scorer',$/;"	v	class:Migration
+name	DID/migrations/0001_initial.py	/^            name='Subject',$/;"	v	class:Migration
+name	DID/migrations/0001_initial.py	/^            name='scorer',$/;"	v	class:Migration
+name	DID/migrations/0001_initial.py	/^            name='subject',$/;"	v	class:Migration
+name	DID/migrations/0001_initial.py	/^            name='subjects',$/;"	v	class:Migration
+name	DID/migrations/0002_scorer_password.py	/^            name='password',$/;"	v	class:Migration
+name	DID/migrations/0003_scorer_score.py	/^            name='score',$/;"	v	class:Migration
+name	DID/migrations/0004_auto_20170810_0604.py	/^            name='score',$/;"	v	class:Migration
+name	DID/migrations/0005_auto_20170810_1159.py	/^            name='date',$/;"	v	class:Migration
+name	DID/migrations/0005_auto_20170810_1159.py	/^            name='datetime',$/;"	v	class:Migration
+name	DID/migrations/0006_auto_20170811_0527.py	/^            name='day_total',$/;"	v	class:Migration
+name	DID/migrations/0006_auto_20170811_0527.py	/^            name='month_total',$/;"	v	class:Migration
+name	DID/migrations/0006_auto_20170811_0527.py	/^            name='semister_total',$/;"	v	class:Migration
+name	DID/migrations/0006_auto_20170811_0527.py	/^            name='week_total',$/;"	v	class:Migration
+name	DID/migrations/0007_clas_register_year.py	/^            name='register_year',$/;"	v	class:Migration
+name	DID/migrations/0008_record_datetime.py	/^            name='datetime',$/;"	v	class:Migration
+name	DID/migrations/0009_subject_weeky.py	/^            name='weeky',$/;"	v	class:Migration
+name	DID/migrations/0010_record_reason.py	/^            name='reason',$/;"	v	class:Migration
+name	DID/migrations/0011_auto_20170907_2047.py	/^            name='day_total',$/;"	v	class:Migration
+name	DID/migrations/0011_auto_20170907_2047.py	/^            name='full_score',$/;"	v	class:Migration
+name	DID/migrations/0011_auto_20170907_2047.py	/^            name='is_service',$/;"	v	class:Migration
+name	DID/migrations/0011_auto_20170907_2047.py	/^            name='month_total',$/;"	v	class:Migration
+name	DID/migrations/0011_auto_20170907_2047.py	/^            name='semister_total',$/;"	v	class:Migration
+name	DID/migrations/0011_auto_20170907_2047.py	/^            name='week_total',$/;"	v	class:Migration
+name	DID/migrations/0011_auto_20170907_2047.py	/^            name='weeky',$/;"	v	class:Migration
+name	DID/migrations/0012_auto_20171201_1305.py	/^            name='score',$/;"	v	class:Migration
+name	DID/migrations/0013_auto_20171207_1023.py	/^            name='reason',$/;"	v	class:Migration
+name	DID/migrations/0014_scorer_admin.py	/^            name='admin',$/;"	v	class:Migration
+name	DID/migrations/0015_auto_20171220_0200.py	/^            name='reason',$/;"	v	class:Migration
+name	DID/migrations/0016_auto_20171220_0209.py	/^            name='reason',$/;"	v	class:Migration
+name	DID/migrations/0017_auto_20180518_0807.py	/^            name='clas',$/;"	v	class:Migration
+name	DID/migrations/0017_auto_20180518_0807.py	/^            name='scorer',$/;"	v	class:Migration
+name	DID/migrations/0017_auto_20180518_0807.py	/^            name='subject',$/;"	v	class:Migration
+name	DID/models.py	/^    name = models.TextField()$/;"	v	class:Clas
+name	DID/models.py	/^    name = models.TextField()$/;"	v	class:Scorer
+name	DID/models.py	/^    name = models.TextField()$/;"	v	class:Subject
+operations	DID/migrations/0001_initial.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0002_scorer_password.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0003_scorer_score.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0004_auto_20170810_0604.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0005_auto_20170810_1159.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0006_auto_20170811_0527.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0007_clas_register_year.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0008_record_datetime.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0009_subject_weeky.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0010_record_reason.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0011_auto_20170907_2047.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0012_auto_20171201_1305.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0013_auto_20171207_1023.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0014_scorer_admin.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0015_auto_20171220_0200.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0016_auto_20171220_0209.py	/^    operations = [$/;"	v	class:Migration
+operations	DID/migrations/0017_auto_20180518_0807.py	/^    operations = [$/;"	v	class:Migration
+password	DID/models.py	/^    password = models.TextField()$/;"	v	class:Scorer
+preserve_default	DID/migrations/0002_scorer_password.py	/^            preserve_default=False,$/;"	v	class:Migration
+preserve_default	DID/migrations/0003_scorer_score.py	/^            preserve_default=False,$/;"	v	class:Migration
+preserve_default	DID/migrations/0004_auto_20170810_0604.py	/^            preserve_default=False,$/;"	v	class:Migration
+preserve_default	DID/migrations/0005_auto_20170810_1159.py	/^            preserve_default=False,$/;"	v	class:Migration
+preserve_default	DID/migrations/0006_auto_20170811_0527.py	/^            preserve_default=False,$/;"	v	class:Migration
+preserve_default	DID/migrations/0007_clas_register_year.py	/^            preserve_default=False,$/;"	v	class:Migration
+preserve_default	DID/migrations/0008_record_datetime.py	/^            preserve_default=False,$/;"	v	class:Migration
+preserve_default	DID/migrations/0009_subject_weeky.py	/^            preserve_default=False,$/;"	v	class:Migration
+project_opened	DID/.ropeproject/config.py	/^def project_opened(project):$/;"	f
+reason	DID/models.py	/^    reason = models.TextField(null=True, blank=True)$/;"	v	class:Record
+register_year	DID/models.py	/^    register_year = models.IntegerField()$/;"	v	class:Clas
+score	DID/models.py	/^    score = models.FloatField()$/;"	v	class:Record
+scoreboard	DID/services.py	/^class scoreboard:$/;"	c
+scoreboard_get_by_date	DID/views.py	/^def scoreboard_get_by_date(request):$/;"	f
+scoremoments	DID/services.py	/^class scoremoments:$/;"	c
+scoremoments_get	DID/views.py	/^def scoremoments_get(request):$/;"	f
+scoremoments_get_by_class	DID/views.py	/^def scoremoments_get_by_class(request):$/;"	f
+scoremoments_query	DID/views.py	/^def scoremoments_query(request):$/;"	f
+scorer	DID/models.py	/^    scorer = models.ForeignKey(Scorer, on_delete=models.DO_NOTHING)$/;"	v	class:Record
+scorer_get_scores_by_date	DID/views.py	/^def scorer_get_scores_by_date(request):$/;"	f
+scorer_login	DID/views.py	/^def scorer_login(request):$/;"	f
+scorer_submit_score	DID/views.py	/^def scorer_submit_score(request):$/;"	f
+scorerank_get_by_type	DID/views.py	/^def scorerank_get_by_type(request):$/;"	f
+scoreranking	DID/services.py	/^class scoreranking:$/;"	c
+scorers_get_names	DID/views.py	/^def scorers_get_names(request):$/;"	f
+scorezone	DID/services.py	/^class scorezone:$/;"	c
+semister_total	DID/models.py	/^    semister_total = models.IntegerField(default=0)$/;"	v	class:Clas
+set_prefs	DID/.ropeproject/config.py	/^def set_prefs(prefs):$/;"	f
+subject	DID/models.py	/^    subject = models.ForeignKey(Subject, on_delete=models.DO_NOTHING)$/;"	v	class:Record
+subjects	DID/models.py	/^    subjects = models.ManyToManyField(Subject)$/;"	v	class:Scorer
+subjects_get_names	DID/views.py	/^def subjects_get_names(request):$/;"	f
+update_class_day_total	DID/services.py	/^    def update_class_day_total():$/;"	m	class:scorezone
+update_class_month_total	DID/services.py	/^    def update_class_month_total():$/;"	m	class:scorezone
+update_class_semester_total	DID/services.py	/^    def update_class_semester_total():$/;"	m	class:scorezone
+update_class_week_total	DID/services.py	/^    def update_class_week_total():$/;"	m	class:scorezone
+update_scores	DID/services.py	/^    def update_scores(scorer, scores, scores_reason, scorer_date=datetime.date.today()):$/;"	m	class:scorezone
+urlpatterns	SFLSDID/urls.py	/^urlpatterns = [$/;"	v
+week_total	DID/models.py	/^    week_total = models.IntegerField(default=0)$/;"	v	class:Clas
+weeky	DID/models.py	/^    weeky = models.BooleanField(default=False)$/;"	v	class:Subject

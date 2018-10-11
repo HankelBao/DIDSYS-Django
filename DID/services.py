@@ -4,7 +4,6 @@ from .models import Scorer
 from .models import Record
 import datetime
 import calendar
-from enum import Enum
 
 
 class scoreboard:
@@ -27,150 +26,53 @@ class scoreboard:
             scoreboard_table.append(items)
         return scoreboard_table
 
-    def get_table_header():
-        subjects = Subject.objects.all()
-        scoreboard_head = [""]
-        for subject in subjects:
-            scoreboard_head.append(subject.name)
-        return scoreboard_head
-
-    def get_table_body(date_required):
-        scoreboard_body = []
-        for clas in Clas.objects.all():
-            items = [clas.name]
-            for subject in Subject.objects.all():
-                recordQ = Record.objects.filter(
-                    date=date_required, subject=subject, clas=clas)
-                if recordQ:
-                    for record in recordQ:
-                        words = str(record.score)
-                        if record.reason:
-                            words += " (" + record.reason + ")"
-                        items.append(words)
-                else:
-                    items.append("Not Scored Yet")
-            scoreboard_body.append(items)
-        return scoreboard_body
-
 
 class scoreranking:
+    def get_ranking_table(type, size):
+        type_table = {
+            'daily': ['day_total', 'Total Score of Today'],
+            'weekly': ['week_total', 'Total Score of This Week'],
+            'monthly': ['month_total', 'Total Score of This Month'],
+            'semesterly': ['semister_total', 'Total Score of This Semester']
+        }
+        db_index = 0
+        des_index = 1
 
-    def get_day_ranking_header(type):
-        if type == 0:
-            items = ["#", "Class Name", "Total Score of Today"]
-        elif type == 1:
-            items = ["#", "Class Name", "Total Score of This Week"]
-        elif type == 2:
-            items = ["#", "Class Name", "Total Score of This Month"]
-        else:
-            items = ["#", "Class Name", "Total Score of This Semester"]
-        return items
+        if type not in type_table:
+            return
 
-    def get_3_day_ranking_body():
-        clases = Clas.objects.all().order_by('-day_total')[:3]
-        i = 0
-        ranking_body = []
-        for clas in clases:
-            i += 1
-            items = [str(i), clas.name, clas.day_total]
-            ranking_body.append(items)
-        return ranking_body
-
-    def get_3_day_ranking_table():
-        clases = Clas.objects.all().order_by('-day_total')[:3]
-        i = 0
-        ranking_table = []
-        for clas in clases:
-            i += 1
-            items = {}
-            items['Rank'] = str(i)
-            items['Class Name'] = clas.name
-            items['Total Score Today'] = clas.day_total
-            ranking_table.append(items)
-        return ranking_table
-
-    def get_3_ranking_table(type):
-        if type == 'semisterly':
-            clases = Clas.objects.all().order_by('-semister_total')[:3]
-        elif type == 'weekly':
-            clases = Clas.objects.all().order_by('-week_total')[:3]
-        elif type == 'monnthly':
-            clases = Clas.objects.all().order_by('-month_total')[:3]
-        else:
-            clases = Clas.objects.all().order_by('-semister_total')[:3]
+        clases = \
+            Clas.objects.all().order_by('-'+type_table[type][db_index])[:size]
 
         ranking_table = []
-        i = 0
-        for clas in clases:
-            i += 1
+        for index, clas in enumerate(clases):
             items = {}
-            items['Rank'] = str(i)
+            items['Rank'] = str(index + 1)
             items['Class Name'] = clas.name
-            if type == 'daily':
-                items['Total Score of Today'] = clas.day_total
-            elif type == 'weekly':
-                items['Total Score of This Week'] = clas.week_total
-            elif type == 'monthly':
-                items['Total Score of This Month'] = clas.month_total
-            else:
-                items['Total Score of This Semister'] = clas.semister_total
+            items[type_table[type][des_index]] = \
+                clas.__getattribute__(type_table[type][db_index])
 
             ranking_table.append(items)
         return ranking_table
-
-    def get_3_ranking_body(type):
-        if type == 0:
-            clases = Clas.objects.all().order_by('-semister_total')[:3]
-        elif type == 1:
-            clases = Clas.objects.all().order_by('-week_total')[:3]
-        elif type == 2:
-            clases = Clas.objects.all().order_by('-month_total')[:3]
-        else:
-            clases = Clas.objects.all().order_by('-semister_total')[:3]
-
-        ranking_body = []
-        i = 0
-        for clas in clases:
-            i += 1
-            if type == 0:
-                items = [str(i), clas.name, clas.day_total]
-            elif type == 1:
-                items = [str(i), clas.name, clas.week_total]
-            elif type == 2:
-                items = [str(i), clas.name, clas.month_total]
-            else:
-                items = [str(i), clas.name, clas.semister_total]
-
-            ranking_body.append(items)
-        return ranking_body
 
 
 class scoremoments:
-    def print_record_info(record):
-        return_info = " [ " + str(record.datetime) + " ] " + record.scorer.name + " scored " + str(record.score) + "      for " +\
-            record.clas.name + " " + record.subject.name + \
-            " for " + str(record.date)
-        return return_info
-
-    def get_4_scoremoments():
-        records = Record.objects.all().order_by("-datetime")[:4]
-        items = []
-        for record in records:
-            items.append(scoremoments.print_record_info(record))
-        return items
+    def create_moment_item(record):
+        item = {}
+        item['Date'] = str(record.date)
+        item['Scorer'] = record.scorer.name
+        item['Class'] = record.clas.name
+        item['Subject'] = record.subject.name
+        item['Score'] = record.score
+        item['Reason'] = record.reason
+        item['Score Time'] = str(record.datetime.strftime("%H:%M, %b %d %Y"))
+        return item
 
     def get_scoremoments_table():
         records = Record.objects.all().order_by("-datetime")[:8]
         items = []
         for record in records:
-            item = {}
-            item['Date'] = str(record.date)
-            item['Scorer'] = record.scorer.name
-            item['Class'] = record.clas.name
-            item['Subject'] = record.subject.name
-            item['Score'] = record.score
-            item['Reason'] = record.reason
-            item['Score Time'] = str(record.datetime)
+            item = scoremoments.create_moment_item(record)
             items.append(item)
         return items
 
@@ -179,19 +81,14 @@ class scoremoments:
         if recordQ:
             for record in recordQ:
                 clas = record
-                records = Record.objects.filter(clas=clas, score__lt=10).order_by("-datetime")[:20]
+                records = \
+                    Record.objects.filter(clas=clas, score__lt=10).order_by("-datetime")[:20]
                 items = []
                 for record in records:
-                    item = {}
-                    item['Date'] = str(record.date)
-                    item['Scorer'] = record.scorer.name
-                    item['Class'] = record.clas.name
-                    item['Subject'] = record.subject.name
-                    item['Score'] = record.score
-                    item['Reason'] = record.reason
-                    item['Score Time'] = str(record.datetime)
+                    item = scoremoments.create_moment_item(record)
                     items.append(item)
                 return items
+
 
 class scorezone:
     def check_account(username, password):
@@ -210,9 +107,8 @@ class scorezone:
             day_total = 0
             recordQ = Record.objects.filter(
                 date=datetime.date.today(), clas=clas)
-            if recordQ:
-                for record in recordQ:
-                    day_total += record.score
+            for record in recordQ:
+                day_total += record.score
             clas.day_total = day_total
             clas.save()
 
@@ -261,7 +157,7 @@ class scorezone:
 
     def load_scoreboard_body(scorer, date=datetime.date.today()):
         scoreboard_body = []
-        index = 0
+        index = -1 
         for clas in scorer.clases.all():
             items = [clas.name]
             for subject in scorer.subjects.all():
@@ -275,18 +171,17 @@ class scorezone:
                         if record.reason:
                             keys['reason'] = record.reason
                         else:
-                            keys['reason'] = 'NULL'
+                            keys['reason'] = ""
                 else:
-                    keys['score'] = 'NULL'
-                    keys['reason'] = 'NULL'
+                    keys['score'] = ""
+                    keys['reason'] = ""
                 keys['index'] = index
-                keys['indexR'] = str(index)+'R'
                 items.append(keys)
             scoreboard_body.append(items)
         return scoreboard_body
 
     def update_scores(scorer, scores, scores_reason, scorer_date=datetime.date.today()):
-        i = 0
+        i = -1 
         for clas in scorer.clases.all():
             for subject in scorer.subjects.all():
                 i += 1
@@ -309,7 +204,3 @@ class scorezone:
                         else:
                             Record.objects.create(date=scorer_date, datetime=datetime.datetime.now(),
                                                   clas=clas, subject=subject, scorer=scorer, score=scores[i])
-        scorezone.update_class_day_total()
-        scorezone.update_class_month_total()
-        scorezone.update_class_week_total()
-        scorezone.update_class_semester_total()
